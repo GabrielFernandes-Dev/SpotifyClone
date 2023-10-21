@@ -42,7 +42,7 @@ export default {
 </script>
 
 <template>
-    <main className="">
+    <main className="my-20">
         <form className="flex flex-col bg-black w-[700px] h-[950px] mx-auto py-14 px-20 rounded-md items-center"
             @submit.prevent="onSubmit">
             <h1 className="text-white font-bold text-[40px]">Entrar no Spotify</h1>
@@ -52,7 +52,7 @@ export default {
                     <button type="button"
                         className="text-white font-semibold border-2 border-zinc-400 rounded-3xl w-full hover:border-white flex px-4 py-2">
                         <img src="/svg/google-logo.svg" alt="google-logo" />
-                        <span className="mx-auto">Continuar com o google</span>
+                        <span className="mx-auto font-bold">Continuar com o google</span>
                     </button>
                 </li>
 
@@ -60,7 +60,7 @@ export default {
                     <button type="button"
                         className="text-white font-semibold border-2 border-zinc-400 rounded-3xl w-full hover:border-white flex px-4 py-2">
                         <img src="/svg/facebook-logo.svg" alt="facebook-logo" />
-                        <span className="mx-auto">Continuar com o facebook</span>
+                        <span className="mx-auto font-bold">Continuar com o facebook</span>
                     </button>
                 </li>
 
@@ -68,7 +68,7 @@ export default {
                     <button type="button"
                         className="text-white font-semibold border-2 border-zinc-400 rounded-3xl w-full hover:border-white flex px-4 py-2">
                         <img src="/svg/apple-logo.svg" alt="apple-logo" />
-                        <span className="mx-auto">Continuar com a apple</span>
+                        <span className="mx-auto font-bold">Continuar com a apple</span>
                     </button>
                 </li>
 
@@ -103,7 +103,7 @@ export default {
                 <label className="mt-8 relative inline-flex items-center">
                     <input type="checkbox" className="sr-only peer" />
                     <div
-                        className="w-8 h-4 bg-zinc-400 rounded-full peer peer-focus:ring-4 peer-focus:ring-white peer-checked:after:translate-x-4 peer-checked:after:border-none after:absolute after:top-1 after:left-[2px] after:bg-black after:rounded-full after:h-3 after:w-3 after:transition-all peer-checked:bg-[#1db954]">
+                        className="w-8 h-4 bg-zinc-400 rounded-full peer peer-focus:ring-4 peer-focus:ring-white peer-checked:after:translate-x-4 peer-checked:after:border-none after:absolute after:top-1 after:left-[2px] after:bg-black after:rounded-full after:h-3 after:w-3 after:transition-all peer-checked:bg-purple-700">
                     </div>
                     <span className="ml-3 text-sm font-medium text-white">
                         Lembrar de mim
@@ -111,21 +111,21 @@ export default {
                 </label>
 
                 <button type="submit"
-                    class="p-3 mt-10 mb-5 text-black hover:scale-[1.04] font-semibold bg-[#1db954] rounded-3xl outline-white">
+                    class="p-3 mt-10 mb-5 text-white hover:scale-[1.04] font-semibold bg-purple-700 rounded-3xl outline-white">
                     Entrar
                 </button>
 
                 <a href="https://accounts.spotify.com/en/password-reset?flow_ctx=578b03af-64b8-448c-949e-dfd77fc8fbf5%3A1691979769"
-                    className="mb-8 text-white text-center underline underline-offset-1 hover:text-[#1db954]">
+                    className="mb-8 text-white text-center underline underline-offset-1 hover:text-purple-700">
                     Esqueceu sua senha?
                 </a>
             </div>
 
-            <hr className="border-zinc-900 w-full" />
+            <hr className="border-zinc-900 w-full mb-5" />
 
-            <p className="mt-10 text-zinc-400 pb-10">
+            <p className="mb-5 text-zinc-400 pb-10">
                 Não tem uma conta?
-                <routerLink to="/register" className="text-white underline underline-offset-1 ml-1 hover:text-[#1db954]">
+                <routerLink to="/register" className="text-white underline underline-offset-1 ml-1 hover:text-purple-700">
                     Inscrever-se no Spotify
                 </routerLink>
             </p>
