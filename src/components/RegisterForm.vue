@@ -7,6 +7,7 @@ export default {
     const form = ref({
       emailInput: "",
       passwordInput: "",
+      firstName: ""
     });
 
     const formSchema = z.object({
@@ -15,6 +16,10 @@ export default {
         .string()
         .min(6, { message: "A senha deve ter no mínimo 6 caracteres!" })
         .max(12, { message: "A senha deve ter no máximo 12 caracteres!" }),
+      firstName: z.string().min(3, { message: "Você deve escrever pelo menos o primeiro nome!" }).max(20, { message: "Somente o primeiro e segundo nome!" }),
+      day: z.string().min(1).max(2),
+      year: z.string().min(4),
+      terms: z.string()
     });
 
     const errors = ref(null);
@@ -28,7 +33,9 @@ export default {
         errors.value = null;
         console.log({
           email: form.value.emailInput,
-          password: form.value.passwordInput
+          password: form.value.passwordInput,
+          firstName: form.value.firstName,
+          terms: form.value.terms
         })
       }
     };
@@ -43,8 +50,8 @@ export default {
 </script>
 
 <template>
-  <main class="m-auto w-[800px]">
-    <form class="py-[20px] m-auto flex flex-col w-[50%]">
+  <main class="m-auto w-[700px] bg-black rounded-md my-20">
+    <form class="py-[20px] m-auto flex flex-col w-[60%]" @submit.prevent="onSubmit">
       <img class="my-[20px]" src="/svg/spotify.svg" alt="spotify-logo" />
       <h1 class="text-center text-[20px] font-bold text-white">Inscreva-se grátis e comece a curtir.</h1>
 
@@ -66,23 +73,33 @@ export default {
 
       <div class="mb-[15px] flex flex-col">
         <label class="font-bold text-white" for="email-input">Qual é o seu email?</label>
-        <input type="text"
+        <input v-model="form.emailInput" type="text"
           class="w-[100%] text-black p-[8px] text-[14px] rounded-[3px] border-2 border-solid border-[#cccccc] focus:outline-none"
           id="email-input" />
-        <a class="text-[12px] text-purple-100 font-bold underline" href="#!">Usar número de telefone.</a>
+        <router-link class="text-[12px] text-purple-700 font-bold underline" to="#!">Usar número de
+          telefone.</router-link>
+        <p class="text-red-500 text-sm mt-1" v-if="errors && errors.emailInput">
+          {{ errors.emailInput._errors[0] }}
+        </p>
       </div>
 
       <div class="mb-[15px]">
         <label class="font-bold text-white" for="password-input">Crie uma senha</label>
-        <input type="password"
+        <input v-model="form.passwordInput" type="password"
           class="w-[100%] p-[8px] text-black text-[14px] rounded-[3px] border-2 border-solid border-[#cccccc] focus:outline-none" />
+        <p class="text-red-500 text-sm mt-1" v-if="errors && errors.passwordInput">
+          {{ errors.passwordInput._errors[0] }}
+        </p>
       </div>
 
       <div class="mb-[15px]">
-        <label class="font-bold text-white" for="email-input">Como devemos chamar você?</label>
+        <label class="font-bold text-white" for="firstName">Como devemos chamar você?</label>
         <input type="text"
-          class="w-[100%] p-[8px] text-black text-[14px] rounded-[3px] border-2 border-solid border-[#cccccc] focus:outline-none" />
+          class="w-[100%] p-[8px] text-black text-[14px] rounded-[3px] border-2 border-solid border-[#cccccc] focus:outline-none" id="firstName" />
         <p class="text-[12px] text-white font-bold">Isso aparece no seu perfil.</p>
+        <p class="text-red-500 text-sm mt-1" v-if="errors && errors.firstName">
+          {{ errors.firstName._errors[0] }}
+        </p>
       </div>
 
       <div class="mb-[15px] text-white">
@@ -160,7 +177,7 @@ export default {
         <div class="flex w-[100%] text-[12px] mb-[30px]">
           <input class="mr-2" type="checkbox" value="Masculino" />
           <label class="font-bold text-white">
-            Eu concordo com os <span class="text-purple-100 underline">Termos e Condições de Uso do Spotify</span>.
+            Eu concordo com os <span class="text-purple-700 underline font-bold">Termos e Condições de Uso do Spotify</span>.
           </label>
         </div>
       </div>
@@ -168,17 +185,17 @@ export default {
       <p class="text-[10px] text-center font-bold text-white">
         Para saber mais sobre como o Spotify coleta, utiliza, compartilha e
         protege seus dados pessoais, leia a
-        <span class="text-purple-100 underline font-bold">Política de Privacidade do Spotify</span>.
+        <span class="text-purple-700 underline font-bold">Política de Privacidade do Spotify</span>.
       </p>
 
-      <button type="button"
-        class="border-none rounded-[25px] py-[15px] px-[40px] bg-purple-400 text-[15px] font-bold w-[50%] m-auto my-[20px] hover:scale-[1.04] text-white">
+      <button type="submit"
+        class="border-none rounded-[25px] py-[15px] px-[40px] bg-purple-700 text-[15px] font-bold w-[50%] m-auto my-[20px] hover:scale-[1.04] text-white">
         Inscrever-se
       </button>
 
       <h6 class="text-center text-white font-bold">
         Já tem uma conta?
-        <router-link class="text-purple-100 font-bold underline" to="/login">Faça login</router-link>
+        <router-link class="text-purple-700 font-bold underline" to="/login">Faça login</router-link>
       </h6>
     </form>
   </main>
