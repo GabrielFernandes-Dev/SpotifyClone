@@ -7,30 +7,35 @@
             "musicas": [
                 {
                     "idMusica": 10,
+                    "titulo": "lofistudy",
                     "nomeMusica": "Lofi Study",
                     "localMusica": "src/songs/lofi-study-112191.mp3",
                     "duracao": "2:27"
                 },
                 {
                     "idMusica": 11,
+                    "titulo": "goodnight",
                     "nomeMusica": "Good Night",
                     "localMusica": "src/songs/good-night-160166.mp3",
                     "duracao": "2:27"
                 },
                 {
                     "idMusica": 12,
+                    "titulo": "coffeechillout",
                     "nomeMusica": "Coffee Chill Out",
                     "localMusica": "src/songs/coffee-chill-out-15283.mp3",
                     "duracao": "1:16"
                 },
                 {
                     "idMusica": 13,
+                    "titulo": "lofichill",
                     "nomeMusica": "Lofi Chill",
                     "localMusica": "src/songs/lofi-chill-medium-version-159456.mp3",
                     "duracao": "1:07"
                 },
                 {
                     "idMusica": 14,
+                    "titulo": "ambientlofi",
                     "nomeMusica": "Ambient Lofi",
                     "localMusica": "src/songs/lost-ambient-lofi-60s-10821.mp3",
                     "duracao": "0:58"

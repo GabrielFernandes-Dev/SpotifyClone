@@ -2,8 +2,16 @@
 import { reactive } from 'vue';
 import SideBar from '../components/SideBar.vue';
 import { playlistSelecionada } from '../stores/PlaylistAtual'
+import axios from 'axios'
 
 let btn = 0
+
+function buscaMusica(){
+    var musicaBuscada = document.getElementById("musicabuscada").value.toLowerCase()
+    document.getElementById("musicabuscada").value = musicaBuscada
+
+    const musica = axios.get('http://localhost:3000/playlists?titulo='+ musicaBuscada)
+}
 </script>
 
 <template>
@@ -30,6 +38,13 @@ let btn = 0
                 </th>
                 <th scope="col" class="px-4 py-3">
                     Genero
+                </th>
+                <th>
+                    <div class="box-busca">
+                        <div class="search-box">
+                            <input type="text" class="search-box-input" name="busca" onchange="buscaMusica()" id="musicabuscada">
+                        </div><!-- Search -->
+                    </div><!--Box Busca-->
                 </th>
             </tr>
         </thead>
