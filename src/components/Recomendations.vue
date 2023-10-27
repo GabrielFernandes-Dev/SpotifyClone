@@ -1,17 +1,29 @@
-<script setup>
-import { reactive } from 'vue';
-import { ref } from 'vue'
-import { playlistsContent } from '../stores/PlaylistsContent';
+<script>
 import { playlistSelecionada } from '../stores/PlaylistAtual' 
+import axios from 'axios'
 
-function getImageUrl(name) {
-    return new URL(`${name}`,import.meta.url).href
+export default {
+
+    data() {
+        return {
+            playlists: []
+        };
+    },
+    async created() {
+        const res = await axios.get('http://localhost:3000/playlists')
+        this.playlists = res.data
+    },
+    methods: {
+        getImageUrl(name) {
+            return new URL(`${name}`,import.meta.url).href
+        }
+    }
 }
 
 </script>
 <template>
     <div class="columns-4">
-        <div v-for="playlist in playlistsContent" class="pl-2 pb-2">
+        <div v-for="playlist in playlists" class="pl-2 pb-2">
             <div class="block w-44 rounded-lg shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] bg-neutral-700 card-hover">
                 <router-link to="/playlist" @click="playlistSelecionada = playlist.musicas">
                     <img class="rounded-t-lg w-full h-44 object-cover"

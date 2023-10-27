@@ -3,7 +3,7 @@ import HomeView from '../views/HomeView.vue'
 import FaqView from '../views/FaqView.vue'
 import RecomendationsView from '../views/RecomendationsView.vue'
 import PlayList from '../views/PlayListView.vue'
-import ResgisterView from '../views/RegisterView.vue'
+import RegisterView from '../views/RegisterView.vue'
 import LoginView from '../views/LoginView.vue'
 
 const router = createRouter({
@@ -17,7 +17,7 @@ const router = createRouter({
     {
       path: '/register',
       name: 'register',
-      component: ResgisterView
+      component: RegisterView
     },
     {
       path: '/faq',
