@@ -11,7 +11,7 @@ export default {
     },
     async created() {
         const res = await axios.get('http://localhost:3000/playlists')
-        this.playlists = res.data
+        this.playlists = res.data.slice(0, 8)
     },
     methods: {
         getImageUrl(name) {

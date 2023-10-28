@@ -6,7 +6,7 @@ import SideBar from '../components/SideBar.vue';
 <template>
     <div class="flex min-h-screen">
         <SideBar/>
-        <div class="flex flex-col items-center justify-center min-h-screen">
+        <div class="flex flex-col items-center mt-12 ml-14 min-h-screen">
             <p class="text-black text-4xl font-bold mb-4">Playlists recomendadas</p>
             <Recomendations />
         </div> 
