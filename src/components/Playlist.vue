@@ -12,17 +12,25 @@ export default {
         return {
             playlistId: this.$route.query.id,
             playlistSelecionada: [],
-            imageUrl: './samuel.jpg'
+            imageUrl: './samuel.jpg',
+            musicasPlaylist: [],
         };
     },
-    created() {
-        this.getPlaylist()
+    async created() {
+        await this.getPlaylist()
+        await this.getMusicas()
     },
     watch: {
         $route(to, from) {
             if (to.query.id !== from.query.id) {
                 this.getPlaylist();
             }
+        },
+        playlistSelecionada: {
+            handler() {
+                this.getMusicas();
+            },
+            deep: true
         }
     },
     methods: {
@@ -34,7 +42,18 @@ export default {
         },
         getImageUrl(name) {
             return new URL(`${name}`,import.meta.url).href
-        }
+        },
+        async getMusicas() {
+            this.musicasPlaylist = [];
+            this.playlistSelecionada.musicas.forEach(async musicaId => {
+                try {
+                    const res = await axios.get('http://localhost:3000/musicas?idMusica=' + musicaId);
+                    this.musicasPlaylist.push(res.data[0]);
+                } catch (error) {
+                    console.error('Erro ao buscar a música:', error);
+                }
+            });
+        },
     }
 }
 </script>
@@ -59,12 +78,12 @@ export default {
                     Adicionado em
                 </th>
                 <th scope="col" class="px-4 py-3">
-                    Genero
+                    Duração
                 </th>
             </tr>
         </thead>
         <tbody>
-            <tr  v-for="n in playlistSelecionada" class="bg-white dark:bg-black">
+            <tr  v-for="n in musicasPlaylist" class="bg-white dark:bg-black">
                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white" @click="btn = n.localMusica">
                     {{ n.nomeMusica }}
                 </th>
@@ -72,10 +91,10 @@ export default {
                     {{ n.nome }}
                 </td>
                 <td class="px-6 py-4">
-                    {{ n.nome }}
+                    {{ n.dataCriacao }}
                 </td>
                 <td class="px-6 py-4">
-                   {{ n.nome }}
+                   {{ n.duracao }}
                 </td>
                 <!-- <audio style="width:800px;height:32px" controls>
                     <source :src="n.localMusica" type="audio/ogg">
