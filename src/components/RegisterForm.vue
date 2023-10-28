@@ -21,6 +21,9 @@ export default {
     });
 
     const errors = ref(null);
+    const hasRegistration = ref(false);
+    const showAlert = ref(false);
+
     const onSubmit = () => {
       const validSchema = formSchema.safeParse(form.value);
 
@@ -32,24 +35,37 @@ export default {
           email: form.value.emailInput,
           password: form.value.passwordInput,
           firstName: form.value.firstName,
-        }
+        };
 
-        axios.post("http://localhost:3000/users", request).then((response) => {
-          const userDb = response.data[0];
+        axios.get("http://localhost:3000/users", request).then((response) => {
+          const userDb = response.data;
 
-          console.log(request)
-          if (userDb) {
-            console.log("Usuário criado.");
+          userDb.forEach((element) => {
+            if (element["email"] === request.email) {
+              hasRegistration.value = true;
+              showAlert.value = true;
+              setTimeout(() => {
+                showAlert.value = false;
+              }, 5000);
+            }
+          });
+
+          if (!hasRegistration.value) {
+            axios.post("http://localhost:3000/users", request);
+          } else {
+            console.log("Já possui cadastro");
           }
         }).catch((error) => {
           console.error(error);
-        })
+        });
       }
     };
 
     return {
       form,
       errors,
+      hasRegistration,
+      showAlert,
       onSubmit,
     };
   },
@@ -58,6 +74,10 @@ export default {
 
 <template>
   <main class="m-auto w-[700px] bg-black rounded-md my-20">
+    <div v-if="showAlert" class="bg-red-500 rounded-md text-white p-4 fixed top-24 right-4 font-bold">
+      Usuário já possui cadastro
+    </div>
+
     <form class="py-[20px] m-auto flex flex-col w-[60%]" @submit.prevent="onSubmit">
       <img class="my-[20px]" src="/svg/spotify.svg" alt="spotify-logo" />
       <h1 class="text-center text-[20px] font-bold text-white">Inscreva-se grátis e comece a curtir.</h1>
@@ -81,7 +101,7 @@ export default {
       <div class="mb-[15px] flex flex-col">
         <label class="font-bold text-white" for="email-input">Qual é o seu email?</label>
         <input v-model="form.emailInput" type="text"
-          class="w-[100%] text-black p-[8px] text-[14px] rounded-[3px] border-2 border-solid border-[#cccccc] focus:outline-none"
+          class="w-[100%] border-zinc-400 hover:border-white focus:border-white text-white p-[8px] text-[14px] rounded-[3px] border-2 border-solid focus:outline-none bg-[#131313]"
           id="email-input" />
         <router-link class="text-[12px] text-purple-700 font-bold underline" to="#!">Usar número de
           telefone.</router-link>
@@ -93,7 +113,7 @@ export default {
       <div class="mb-[15px]">
         <label class="font-bold text-white" for="password-input">Crie uma senha</label>
         <input v-model="form.passwordInput" type="password"
-          class="w-[100%] p-[8px] text-black text-[14px] rounded-[3px] border-2 border-solid border-[#cccccc] focus:outline-none" />
+          class="w-[100%] p-[8px] border-zinc-400 hover:border-white focus:border-white text-white text-[14px] rounded-[3px] border-2 border-solid  bg-[#131313] focus:outline-none" />
         <p class="text-red-500 text-sm mt-1" v-if="errors && errors.passwordInput">
           {{ errors.passwordInput._errors[0] }}
         </p>
@@ -102,7 +122,7 @@ export default {
       <div class="mb-[15px]">
         <label class="font-bold text-white" for="firstName">Como devemos chamar você?</label>
         <input type="text"
-          class="w-[100%] p-[8px] text-black text-[14px] rounded-[3px] border-2 border-solid border-[#cccccc] focus:outline-none"
+          class="w-[100%] hover:border-white focus:border-white p-[8px] text-white text-[14px] rounded-[3px] border-2 border-solid bg-[#131313] border-zinc-400 focus:outline-none"
           id="firstName" v-model="form.firstName" />
         <p class="text-[12px] text-white font-bold">Isso aparece no seu perfil.</p>
         <p class="text-red-500 text-sm mt-1" v-if="errors && errors.firstName">
@@ -117,13 +137,13 @@ export default {
           <div class="flex flex-col mr-[20px]">
             <label class="font-bold" for="day-input">Dia</label>
             <input type="text"
-              class="w-[100px] text-black font-normal p-[8px] outline-none border-2 border-solid border-[#cccccc] rounded-[3px]"
+              class="bg-[#131313] w-[100px] text-white font-normal p-[8px] outline-none border-2 border-solid border-zinc-400 hover:border-white focus:border-white rounded-[3px]"
               name="day-input" placeholder="DD" maxlength="2" />
           </div>
 
           <div class="flex flex-col mr-[20px]">
             <label class="font-bold" for="month-input">Mês</label>
-            <select class="w-[150px] text-black h-[44px] p-[8px] font-normal outline-none border-2 border-solid border-[#cccccc] rounded-[3px] bg-white
+            <select class="w-[150px] h-[44px] p-[8px] border-zinc-400 hover:border-white focus:border-white font-normal outline-none border-2 border-solid bg-[#131313] rounded-[3px] text-white
 " name="months">
               <option value="janeiro">janeiro</option>
               <option value="fevereiro">fevereiro</option>
@@ -143,7 +163,7 @@ export default {
           <div class="flex flex-col">
             <label class="font-bold" for="year-input">Ano</label>
             <input type="text"
-              class="w-[100%] text-black p-[8px] font-normal outline-none border-2 border-solid border-[#cccccc] rounded-[3px]"
+              class="w-[100%] border-zinc-400 hover:border-white focus:border-white p-[8px] font-normal outline-none border-2 border-solid rounded-[3px] bg-[#131313] text-white"
               placeholder="AAAA" name="year-input" maxlength="4" />
           </div>
         </div>

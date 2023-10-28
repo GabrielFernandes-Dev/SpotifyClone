@@ -19,6 +19,8 @@ export default {
         });
 
         const errors = ref(null);
+        let showAlert = ref(false);
+
         const onSubmit = () => {
             const validSchema = formSchema.safeParse(form.value);
 
@@ -32,12 +34,20 @@ export default {
                 }
 
                 axios.get("http://localhost:3000/users", request).then((response) => {
-                    const userDb = response.data[0];
+                    const userDb = response.data;
+                    let userNotExists = true
 
-                    if (userDb["email"] == request.email && userDb["password"] == request.password) {
-                        console.log("Usuário válido. Redirecione para a página de sucesso.");
-                    } else {
-                        console.log("Usuário não encontrado. Exiba uma mensagem de erro.");
+                    userDb.forEach(element => {
+                        if (element["email"] === request.email && element["password"] === request.password) {
+                            userNotExists = false
+                        }
+                    })
+
+                    if (userNotExists) {
+                        showAlert.value = true;
+                        setTimeout(() => {
+                            showAlert.value = false;
+                        }, 5000);
                     }
                 }).catch((error) => {
                     console.error(error);
@@ -48,6 +58,7 @@ export default {
         return {
             form,
             errors,
+            showAlert,
             onSubmit,
         };
     },
@@ -56,6 +67,10 @@ export default {
 
 <template>
     <main className="my-20">
+        <div v-if="showAlert" class="bg-red-500 rounded-md text-white p-4 fixed top-24 right-4 ">
+            Usuário não possui cadastro
+        </div>
+
         <form className="flex flex-col bg-black w-[700px] h-[950px] mx-auto py-14 px-20 rounded-md items-center"
             @submit.prevent="onSubmit">
             <h1 className="text-white font-bold text-[40px]">Entrar no Spotify</h1>
