@@ -13,7 +13,7 @@ export default {
 }
 </script>
 <template>
-    <router-link to="/playlist" @click="playlistSelecionada = playlist.musicas">
+    <router-link :to="'/playlist?id=' + id" @click="playlistSelecionada = playlist.musicas">
         <div class="max-w-sm w-full lg:max-w-md lg:flex">
             <div class="border-r border-b border-l bg-zinc-900 hover:bg-zinc-800 border-gray-950 lg:border-l-0 lg:border-t lg:border-gray-1000 rounded-b lg:rounded-b-none lg:rounded-r p-2 flex flex-col justify-between leading-normal mx-2 mb-2 w-96">
                 <div class="flex items-center space-x-4">
