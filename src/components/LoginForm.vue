@@ -1,4 +1,5 @@
 <script>
+import axios from "axios";
 import { ref } from "vue";
 import { z } from "zod";
 
@@ -25,9 +26,21 @@ export default {
                 errors.value = validSchema.error.format();
             } else {
                 errors.value = null;
-                console.log({
+                const request = {
                     email: form.value.emailInput,
                     password: form.value.passwordInput
+                }
+
+                axios.get("http://localhost:3000/users", request).then((response) => {
+                    const userDb = response.data[0];
+
+                    if (userDb["email"] == request.email && userDb["password"] == request.password) {
+                        console.log("Usuário válido. Redirecione para a página de sucesso.");
+                    } else {
+                        console.log("Usuário não encontrado. Exiba uma mensagem de erro.");
+                    }
+                }).catch((error) => {
+                    console.error(error);
                 })
             }
         };

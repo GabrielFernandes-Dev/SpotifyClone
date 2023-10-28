@@ -1,4 +1,5 @@
 <script>
+import axios from "axios";
 import { ref } from "vue";
 import { z } from "zod";
 
@@ -16,26 +17,32 @@ export default {
         .string()
         .min(6, { message: "A senha deve ter no mínimo 6 caracteres!" })
         .max(12, { message: "A senha deve ter no máximo 12 caracteres!" }),
-      firstName: z.string().min(3, { message: "Você deve escrever pelo menos o primeiro nome!" }).max(20, { message: "Somente o primeiro e segundo nome!" }),
-      day: z.string().min(1).max(2),
-      year: z.string().min(4),
-      terms: z.string()
+      firstName: z.string().min(3, { message: "Você deve escrever pelo menos o primeiro nome!" }),
     });
 
     const errors = ref(null);
     const onSubmit = () => {
       const validSchema = formSchema.safeParse(form.value);
 
-
       if (!validSchema.success) {
         errors.value = validSchema.error.format();
       } else {
         errors.value = null;
-        console.log({
+        const request = {
           email: form.value.emailInput,
           password: form.value.passwordInput,
           firstName: form.value.firstName,
-          terms: form.value.terms
+        }
+
+        axios.post("http://localhost:3000/users", request).then((response) => {
+          const userDb = response.data[0];
+
+          console.log(request)
+          if (userDb) {
+            console.log("Usuário criado.");
+          }
+        }).catch((error) => {
+          console.error(error);
         })
       }
     };
@@ -95,7 +102,8 @@ export default {
       <div class="mb-[15px]">
         <label class="font-bold text-white" for="firstName">Como devemos chamar você?</label>
         <input type="text"
-          class="w-[100%] p-[8px] text-black text-[14px] rounded-[3px] border-2 border-solid border-[#cccccc] focus:outline-none" id="firstName" />
+          class="w-[100%] p-[8px] text-black text-[14px] rounded-[3px] border-2 border-solid border-[#cccccc] focus:outline-none"
+          id="firstName" v-model="form.firstName" />
         <p class="text-[12px] text-white font-bold">Isso aparece no seu perfil.</p>
         <p class="text-red-500 text-sm mt-1" v-if="errors && errors.firstName">
           {{ errors.firstName._errors[0] }}
@@ -177,7 +185,8 @@ export default {
         <div class="flex w-[100%] text-[12px] mb-[30px]">
           <input class="mr-2" type="checkbox" value="Masculino" />
           <label class="font-bold text-white">
-            Eu concordo com os <span class="text-purple-700 underline font-bold">Termos e Condições de Uso do Spotify</span>.
+            Eu concordo com os <span class="text-purple-700 underline font-bold">Termos e Condições de Uso do
+              Spotify</span>.
           </label>
         </div>
       </div>
