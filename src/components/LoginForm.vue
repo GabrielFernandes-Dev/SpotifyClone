@@ -1,73 +1,68 @@
 <script>
-import axios from "axios";
-import { ref } from "vue";
-import { z } from "zod";
+import axios from 'axios'
+import { z } from 'zod'
 
 export default {
-    setup() {
-        const form = ref({
-            emailInput: "",
-            passwordInput: "",
-        });
+    data() {
+        return {
+            form: {
+                emailInput: '',
+                passwordInput: '',
+            },
+            errors: null,
+            showAlert: false,
+        }
+    },
+    methods: {
+        onSubmit: async function () {
+            const formSchema = z.object({
+                emailInput: z.string().email({ message: 'Formato de email inválido!' }),
+                passwordInput: z
+                    .string()
+                    .min(6, { message: 'A senha deve ter no mínimo 6 caracteres!' })
+                    .max(12, { message: 'A senha deve ter no máximo 12 caracteres!' }),
+            })
 
-        const formSchema = z.object({
-            emailInput: z.string().email({ message: "Formato de email inválido!" }),
-            passwordInput: z
-                .string()
-                .min(6, { message: "A senha deve ter no mínimo 6 caracteres!" })
-                .max(12, { message: "A senha deve ter no máximo 12 caracteres!" }),
-        });
-
-        const errors = ref(null);
-        let showAlert = ref(false);
-
-        const onSubmit = () => {
-            const validSchema = formSchema.safeParse(form.value);
+            const validSchema = formSchema.safeParse(this.form)
 
             if (!validSchema.success) {
-                errors.value = validSchema.error.format();
+                this.errors = validSchema.error.format()
             } else {
-                errors.value = null;
+                this.errors = null;
                 const request = {
-                    email: form.value.emailInput,
-                    password: form.value.passwordInput
+                    email: this.form.emailInput,
+                    password: this.form.passwordInput,
                 }
 
-                axios.get("http://localhost:3000/users", request).then((response) => {
-                    const userDb = response.data;
-                    let userNotExists = true
+                const response = await axios.get('http://localhost:3000/users', request)
+                const userDb = response.data
+                
+                let userNotExists = true
 
-                    userDb.forEach(element => {
-                        if (element["email"] === request.email && element["password"] === request.password) {
-                            userNotExists = false
-                        }
-                    })
-
-                    if (userNotExists) {
-                        showAlert.value = true;
-                        setTimeout(() => {
-                            showAlert.value = false;
-                        }, 5000);
+                userDb.forEach((element) => {
+                    if (element['email'] === request.email && element['password'] === request.password) {
+                        userNotExists = false
                     }
-                }).catch((error) => {
-                    console.error(error);
                 })
-            }
-        };
 
-        return {
-            form,
-            errors,
-            showAlert,
-            onSubmit,
-        };
+                if (userNotExists) {
+                    this.showAlert = true
+                    setTimeout(() => {
+                        this.showAlert = false
+                    }, 5000)
+                } else {
+                    this.$router.push('/')
+                }
+
+            }
+        },
     },
-};
+}
 </script>
 
 <template>
     <main className="my-20">
-        <div v-if="showAlert" class="bg-red-500 rounded-md text-white p-4 fixed top-24 right-4 ">
+        <div v-if="showAlert" class="bg-red-500 rounded-md text-white p-4 fixed top-24 right-4 font-bold">
             Usuário não possui cadastro
         </div>
 

@@ -1,76 +1,68 @@
 <script>
 import axios from "axios";
-import { ref } from "vue";
 import { z } from "zod";
 
 export default {
-  setup() {
-    const form = ref({
-      emailInput: "",
-      passwordInput: "",
-      firstName: ""
-    });
-
-    const formSchema = z.object({
-      emailInput: z.string().email({ message: "Formato de email inválido!" }),
-      passwordInput: z
-        .string()
-        .min(6, { message: "A senha deve ter no mínimo 6 caracteres!" })
-        .max(12, { message: "A senha deve ter no máximo 12 caracteres!" }),
-      firstName: z.string().min(3, { message: "Você deve escrever pelo menos o primeiro nome!" }),
-    });
-
-    const errors = ref(null);
-    const hasRegistration = ref(false);
-    const showAlert = ref(false);
-
-    const onSubmit = () => {
-      const validSchema = formSchema.safeParse(form.value);
-
-      if (!validSchema.success) {
-        errors.value = validSchema.error.format();
-      } else {
-        errors.value = null;
-        const request = {
-          email: form.value.emailInput,
-          password: form.value.passwordInput,
-          firstName: form.value.firstName,
-        };
-
-        axios.get("http://localhost:3000/users", request).then((response) => {
-          const userDb = response.data;
-
-          userDb.forEach((element) => {
-            if (element["email"] === request.email) {
-              hasRegistration.value = true;
-              showAlert.value = true;
-              setTimeout(() => {
-                showAlert.value = false;
-              }, 5000);
-            }
-          });
-
-          if (!hasRegistration.value) {
-            axios.post("http://localhost:3000/users", request);
-          } else {
-            console.log("Já possui cadastro");
-          }
-        }).catch((error) => {
-          console.error(error);
-        });
-      }
-    };
-
+  data() {
     return {
-      form,
-      errors,
-      hasRegistration,
-      showAlert,
-      onSubmit,
+      form: {
+        emailInput: '',
+        passwordInput: '',
+        firstName: '',
+      },
+      errors: null,
+      hasRegistration: false,
+      showAlert: false,
     };
   },
-};
+  methods: {
+    onSubmit: async function () {
+      const formSchema = z.object({
+        emailInput: z.string().email({ message: 'Formato de email inválido!' }),
+        passwordInput: z
+          .string()
+          .min(6, { message: 'A senha deve ter no mínimo 6 caracteres!' })
+          .max(12, { message: 'A senha deve ter no máximo 12 caracteres!' }),
+        firstName: z.string().min(3, { message: 'Você deve escrever pelo menos o primeiro nome!' }),
+      })
+
+      const validSchema = formSchema.safeParse(this.form)
+
+      if (!validSchema.success) {
+        this.errors = validSchema.error.format()
+      } else {
+        this.errors = null;
+        const request = {
+          email: this.form.emailInput,
+          password: this.form.passwordInput,
+          firstName: this.form.firstName,
+        }
+
+        const responseGet = await axios.get("http://localhost:3000/users", request);
+        const userDb = responseGet.data;
+
+        userDb.forEach((element) => {
+          if (element["email"] === request.email) {
+            this.hasRegistration = true;
+            this.showAlert = true;
+            setTimeout(() => {
+              this.showAlert = false;
+            }, 5000);
+          }
+        })
+
+        if (!this.hasRegistration) {
+          const responsePost = await axios.post("http://localhost:3000/users", request)
+          if (responsePost.status === 201) {
+            this.$router.push('/login')
+          }
+        }
+      }
+    },
+  },
+}
 </script>
+
 
 <template>
   <main class="m-auto w-[700px] bg-black rounded-md my-20">
