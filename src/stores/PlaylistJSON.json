@@ -1,381 +1,198 @@
 {
-    "playlists": [
-        {
-            "id": 1,
-            "nome": "Lush Lofi",
-            "capa": "../images/sunset_lofi.jpg",
-            "musicas": [
-                {
-                    "idMusica": 10,
-                    "titulo": "lofistudy",
-                    "nomeMusica": "Lofi Study",
-                    "localMusica": "src/songs/lofi-study-112191.mp3",
-                    "duracao": "2:27",
-                    "artista":"FASSounds"
-                },
-                {
-                    "idMusica": 11,
-                    "titulo": "goodnight",
-                    "nomeMusica": "Good Night",
-                    "localMusica": "src/songs/good-night-160166.mp3",
-                    "duracao": "2:27",
-                    "artista":"FASSounds"
-                },
-                {
-                    "idMusica": 12,
-                    "titulo": "coffeechillout",
-                    "nomeMusica": "Coffee Chill Out",
-                    "localMusica": "src/songs/coffee-chill-out-15283.mp3",
-                    "duracao": "1:16",
-                    "artista":"RomanBelov"
-                },
-                {
-                    "idMusica": 13,
-                    "titulo": "lofichill",
-                    "nomeMusica": "Lofi Chill",
-                    "localMusica": "src/songs/lofi-chill-medium-version-159456.mp3",
-                    "duracao": "1:07",
-                    "artista":"BoDleasons"
-                },
-                {
-                    "idMusica": 14,
-                    "titulo": "ambientlofi",
-                    "nomeMusica": "Ambient Lofi",
-                    "localMusica": "src/songs/lost-ambient-lofi-60s-10821.mp3",
-                    "duracao": "0:58",
-                    "artista":"Lesfm"
-                }
-            ]
-        },
-        {
-            "id": 2,
-            "nome": "Chill Lofi Beats",
-            "capa": "../images/lazy_lofi.jpg",
-            "musicas": [
-                {
-                    "idMusica": 20,
-                    "titulo": "rainandnostalgia",
-                    "nomeMusica": "Rain and Nostalgia",
-                    "localMusica": "src/songs/rain-and-nostalgia-version-60s-10820.mp3",
-                    "duracao": "1:10",
-                    "artista":"Lesfm"
-                },
-                {
-                    "idMusica": 21,
-                    "titulo": "sciencedocumentary",
-                    "nomeMusica": "Science Documentary",
-                    "localMusica": "src/songs/science-documentary-169621.mp3",
-                    "duracao": "2:07",
-                    "artista":"Lexin_Music"
-                },
-                {
-                    "idMusica": 22,
-                    "titulo": "spiritblossom",
-                    "nomeMusica": "Spirit Blossom",
-                    "localMusica": "src/songs/spirit-blossom-15285.mp3",
-                    "duracao": "1:48",
-                    "artista":"RomanBelov"
-                },
-                {
-                    "idMusica": 23,
-                    "titulo": "emptymind",
-                    "nomeMusica": "Empty Mind",
-                    "localMusica": "src/songs/empty-mind-118973.mp3",
-                    "duracao": "2:55",
-                    "artista":"Lofi_hour"
-                },
-                {
-                    "idMusica": 24,
-                    "titulo": "theweekend",
-                    "nomeMusica": "The Weekend",
-                    "localMusica": "src/songs/the-weekend-117427.mp3",
-                    "duracao": "2:25",
-                    "artista":"chillmore"
-                }
-            ]
-        },
-        {
-            "id": 3,
-            "nome": "Lofi Beats",
-            "capa": "../images/aesthetic_lofi.png",
-            "musicas": [
-                {
-                    "idMusica": 30,
-                    "titulo": "lofistudy",
-                    "nomeMusica": "Lofi Study",
-                    "localMusica": "src/songs/lofi-study-112191.mp3",
-                    "duracao": "2:27",
-                    "artista":"FASSounds"
-                },
-                {
-                    "idMusica": 31,
-                    "titulo": "goodnight",
-                    "nomeMusica": "Good Night",
-                    "localMusica": "src/songs/good-night-160166.mp3",
-                    "duracao": "2:27",
-                    "artista":"FASSounds"
-                },
-                {
-                    "idMusica": 32,
-                    "titulo": "coffeechillout",
-                    "nomeMusica": "Coffee Chill Out",
-                    "localMusica": "src/songs/coffee-chill-out-15283.mp3",
-                    "duracao": "1:16",
-                    "artista":"RomanBelov"
-                },
-                {
-                    "idMusica": 33,
-                    "titulo": "lofichill",
-                    "nomeMusica": "Lofi Chill",
-                    "localMusica": "src/songs/lofi-chill-medium-version-159456.mp3",
-                    "duracao": "1:07",
-                    "artista":"BoDleasons"
-                },
-                {
-                    "idMusica": 34,
-                    "titulo": "ambientlofi",
-                    "nomeMusica": "Ambient Lofi",
-                    "localMusica": "src/songs/lost-ambient-lofi-60s-10821.mp3",
-                    "duracao": "0:58",
-                    "artista":"Lesfm"
-                }
-            ]
-        },
-        {
-            "id": 4,
-            "nome": "Lofi",
-            "capa": "../images/new_york.jpg",
-            "musicas": [
-                {
-                    "idMusica": 40,
-                    "titulo": "rainandnostalgia",
-                    "nomeMusica": "Rain and Nostalgia",
-                    "localMusica": "src/songs/rain-and-nostalgia-version-60s-10820.mp3",
-                    "duracao": "1:10",
-                    "artista":"Lesfm"
-                },
-                {
-                    "idMusica": 41,
-                    "titulo": "sciencedocumentary",
-                    "nomeMusica": "Science Documentary",
-                    "localMusica": "src/songs/science-documentary-169621.mp3",
-                    "duracao": "2:07",
-                    "artista":"Lexin_Music"
-                },
-                {
-                    "idMusica": 42,
-                    "titulo": "spiritblossom",
-                    "nomeMusica": "Spirit Blossom",
-                    "localMusica": "src/songs/spirit-blossom-15285.mp3",
-                    "duracao": "1:48",
-                    "artista":"RomanBelov"
-                },
-                {
-                    "idMusica": 43,
-                    "titulo": "emptymind",
-                    "nomeMusica": "Empty Mind",
-                    "localMusica": "src/songs/empty-mind-118973.mp3",
-                    "duracao": "2:55",
-                    "artista":"Lofi_hour"
-                },
-                {
-                    "idMusica": 44,
-                    "titulo": "theweekend",
-                    "nomeMusica": "The Weekend",
-                    "localMusica": "src/songs/the-weekend-117427.mp3",
-                    "duracao": "2:25",
-                    "artista":"chillmore"
-                }
-            ]
-        },
-        {
-            "id": 5,
-            "nome": "Chill Lofi Study",
-            "capa": "../images/lofi_girl.jpg",
-            "musicas": [
-                {
-                    "idMusica": 50,
-                    "titulo": "lofistudy",
-                    "nomeMusica": "Lofi Study",
-                    "localMusica": "src/songs/lofi-study-112191.mp3",
-                    "duracao": "2:27",
-                    "artista":"FASSounds"
-                },
-                {
-                    "idMusica": 51,
-                    "titulo": "goodnight",
-                    "nomeMusica": "Good Night",
-                    "localMusica": "src/songs/good-night-160166.mp3",
-                    "duracao": "2:27",
-                    "artista":"FASSounds"
-                },
-                {
-                    "idMusica": 52,
-                    "titulo": "coffeechillout",
-                    "nomeMusica": "Coffee Chill Out",
-                    "localMusica": "src/songs/coffee-chill-out-15283.mp3",
-                    "duracao": "1:16",
-                    "artista":"RomanBelov"
-                },
-                {
-                    "idMusica": 53,
-                    "titulo": "lofichill",
-                    "nomeMusica": "Lofi Chill",
-                    "localMusica": "src/songs/lofi-chill-medium-version-159456.mp3",
-                    "duracao": "1:07",
-                    "artista":"BoDleasons"
-                },
-                {
-                    "idMusica": 54,
-                    "titulo": "ambientlofi",
-                    "nomeMusica": "Ambient Lofi",
-                    "localMusica": "src/songs/lost-ambient-lofi-60s-10821.mp3",
-                    "duracao": "0:58",
-                    "artista":"Lesfm"
-                }
-            ]
-        },
-        {
-            "id": 6,
-            "nome": "Study Lofi",
-            "capa": "../images/study_lofi.jpg",
-            "musicas": [
-                {
-                    "idMusica": 60,
-                    "titulo": "rainandnostalgia",
-                    "nomeMusica": "Rain and Nostalgia",
-                    "localMusica": "src/songs/rain-and-nostalgia-version-60s-10820.mp3",
-                    "duracao": "1:10",
-                    "artista":"Lesfm"
-                },
-                {
-                    "idMusica": 61,
-                    "titulo": "sciencedocumentary",
-                    "nomeMusica": "Science Documentary",
-                    "localMusica": "src/songs/science-documentary-169621.mp3",
-                    "duracao": "2:07",
-                    "artista":"Lexin_Music"
-                },
-                {
-                    "idMusica": 62,
-                    "titulo": "spiritblossom",
-                    "nomeMusica": "Spirit Blossom",
-                    "localMusica": "src/songs/spirit-blossom-15285.mp3",
-                    "duracao": "1:48",
-                    "artista":"RomanBelov"
-                },
-                {
-                    "idMusica": 63,
-                    "titulo": "emptymind",
-                    "nomeMusica": "Empty Mind",
-                    "localMusica": "src/songs/empty-mind-118973.mp3",
-                    "duracao": "2:55",
-                    "artista":"Lofi_hour"
-                },
-                {
-                    "idMusica": 64,
-                    "titulo": "theweekend",
-                    "nomeMusica": "The Weekend",
-                    "localMusica": "src/songs/the-weekend-117427.mp3",
-                    "duracao": "2:25",
-                    "artista":"chillmore"
-                }
-            ]
-        },
-        {
-            "id": 7,
-            "nome": "Lofi Rain",
-            "capa": "../images/R.jpeg",
-            "musicas": [
-                {
-                    "idMusica": 70,
-                    "titulo": "lofistudy",
-                    "nomeMusica": "Lofi Study",
-                    "localMusica": "src/songs/lofi-study-112191.mp3",
-                    "duracao": "2:27",
-                    "artista":"FASSounds"
-                },
-                {
-                    "idMusica": 71,
-                    "titulo": "goodnight",
-                    "nomeMusica": "Good Night",
-                    "localMusica": "src/songs/good-night-160166.mp3",
-                    "duracao": "2:27",
-                    "artista":"FASSounds"
-                },
-                {
-                    "idMusica": 72,
-                    "titulo": "coffeechillout",
-                    "nomeMusica": "Coffee Chill Out",
-                    "localMusica": "src/songs/coffee-chill-out-15283.mp3",
-                    "duracao": "1:16",
-                    "artista":"RomanBelov"
-                },
-                {
-                    "idMusica": 73,
-                    "titulo": "lofichill",
-                    "nomeMusica": "Lofi Chill",
-                    "localMusica": "src/songs/lofi-chill-medium-version-159456.mp3",
-                    "duracao": "1:07",
-                    "artista":"BoDleasons"
-                },
-                {
-                    "idMusica": 74,
-                    "titulo": "ambientlofi",
-                    "nomeMusica": "Ambient Lofi",
-                    "localMusica": "src/songs/lost-ambient-lofi-60s-10821.mp3",
-                    "duracao": "0:58",
-                    "artista":"Lesfm"
-                }
-            ]
-        },
-        {
-            "id": 8,
-            "nome": "Relaxing Music",
-            "capa": "../images/capa-lofi.jpeg",
-            "musicas": [
-                {
-                    "idMusica": 80,
-                    "titulo": "rainandnostalgia",
-                    "nomeMusica": "Rain and Nostalgia",
-                    "localMusica": "src/songs/rain-and-nostalgia-version-60s-10820.mp3",
-                    "duracao": "1:10",
-                    "artista":"Lesfm"
-                },
-                {
-                    "idMusica": 81,
-                    "titulo": "sciencedocumentary",
-                    "nomeMusica": "Science Documentary",
-                    "localMusica": "src/songs/science-documentary-169621.mp3",
-                    "duracao": "2:07",
-                    "artista":"Lexin_Music"
-                },
-                {
-                    "idMusica": 82,
-                    "titulo": "spiritblossom",
-                    "nomeMusica": "Spirit Blossom",
-                    "localMusica": "src/songs/spirit-blossom-15285.mp3",
-                    "duracao": "1:48",
-                    "artista":"RomanBelov"
-                },
-                {
-                    "idMusica": 83,
-                    "titulo": "emptymind",
-                    "nomeMusica": "Empty Mind",
-                    "localMusica": "src/songs/empty-mind-118973.mp3",
-                    "duracao": "2:55",
-                    "artista":"Lofi_hour"
-                },
-                {
-                    "idMusica": 84,
-                    "titulo": "theweekend",
-                    "nomeMusica": "The Weekend",
-                    "localMusica": "src/songs/the-weekend-117427.mp3",
-                    "duracao": "2:25",
-                    "artista":"chillmore"
-                }
-            ]
-        }
-    ],
-    "users": []
+  "playlists": [
+    {
+      "id": 1,
+      "nome": "Lush Lofi",
+      "capa": "../images/sunset_lofi.jpg",
+      "musicas": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "id": 2,
+      "nome": "Chill Lofi Beats",
+      "capa": "../images/lazy_lofi.jpg",
+      "musicas": [
+        6,
+        7,
+        8,
+        9,
+        10
+      ]
+    },
+    {
+      "id": 3,
+      "nome": "Lofi Beats",
+      "capa": "../images/aesthetic_lofi.png",
+      "musicas": [
+        1,
+        2,
+        3,
+        7,
+        9
+      ]
+    },
+    {
+      "id": 4,
+      "nome": "Lofi",
+      "capa": "../images/new_york.jpg",
+      "musicas": [
+        3,
+        2,
+        1,
+        9,
+        6
+      ]
+    },
+    {
+      "id": 5,
+      "nome": "Chill Lofi Study",
+      "capa": "../images/lofi_girl.jpg",
+      "musicas": [
+        4,
+        5,
+        1,
+        8,
+        3
+      ]
+    },
+    {
+      "id": 6,
+      "nome": "Study Lofi",
+      "capa": "../images/study_lofi.jpg",
+      "musicas": [
+        10,
+        1,
+        2,
+        6,
+        9
+      ]
+    },
+    {
+      "id": 7,
+      "nome": "Lofi Rain",
+      "capa": "../images/R.jpeg",
+      "musicas": [
+        10,
+        9,
+        8,
+        7,
+        6
+      ]
+    },
+    {
+      "id": 8,
+      "nome": "Relaxing Music",
+      "capa": "../images/capa-lofi.jpeg",
+      "musicas": [
+        1,
+        5,
+        3,
+        7,
+        10
+      ]
+    },
+    {
+      "id": 9,
+      "nome": "Nova Playlist",
+      "capa": "../images/defaultCover.jpeg",
+      "musicas": []
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "email": "email@mail.com",
+      "password": "123456",
+      "firstName": "Jose",
+      "terms": true,
+      "birthday": {
+        "day": 12,
+        "month": 4,
+        "year": 2000
+      },
+      "registerdate": "27/10/2023",
+      "playlists": [
+        2,
+        3,
+        9
+      ]
+    }
+  ],
+  "musicas": [
+    {
+      "idMusica": 1,
+      "nomeMusica": "Lofi Study",
+      "localMusica": "src/songs/lofi-study-112191.mp3",
+      "dataCriacao": "27/12/2023",
+      "duracao": "2:27"
+    },
+    {
+      "idMusica": 2,
+      "nomeMusica": "Good Night",
+      "localMusica": "src/songs/good-night-160166.mp3",
+      "dataCriacao": "22/05/2023",
+      "duracao": "2:27"
+    },
+    {
+      "idMusica": 3,
+      "nomeMusica": "Coffee Chill Out",
+      "localMusica": "src/songs/coffee-chill-out-15283.mp3",
+      "dataCriacao": "02/07/2023",
+      "duracao": "1:16"
+    },
+    {
+      "idMusica": 4,
+      "nomeMusica": "Lofi Chill",
+      "localMusica": "src/songs/lofi-chill-medium-version-159456.mp3",
+      "dataCriacao": "18/10/2023",
+      "duracao": "1:07"
+    },
+    {
+      "idMusica": 5,
+      "nomeMusica": "Ambient Lofi",
+      "localMusica": "src/songs/lost-ambient-lofi-60s-10821.mp3",
+      "dataCriacao": "06/01/2023",
+      "duracao": "0:58"
+    },
+    {
+      "idMusica": 6,
+      "nomeMusica": "Rain and Nostalgia",
+      "localMusica": "src/songs/rain-and-nostalgia-version-60s-10820.mp3",
+      "dataCriacao": "14/04/2023",
+      "duracao": "1:10"
+    },
+    {
+      "idMusica": 7,
+      "nomeMusica": "Science Documentary",
+      "localMusica": "src/songs/science-documentary-169621.mp3",
+      "dataCriacao": "16/06/2023",
+      "duracao": "2:07"
+    },
+    {
+      "idMusica": 8,
+      "nomeMusica": "Spirit Blossom",
+      "localMusica": "src/songs/spirit-blossom-15285.mp3",
+      "dataCriacao": "24/11/2023",
+      "duracao": "1:48"
+    },
+    {
+      "idMusica": 9,
+      "nomeMusica": "Empty Mind",
+      "localMusica": "src/songs/empty-mind-118973.mp3",
+      "dataCriacao": "20/02/2023",
+      "duracao": "2:55"
+    },
+    {
+      "idMusica": 10,
+      "nomeMusica": "The Weekend",
+      "localMusica": "src/songs/the-weekend-117427.mp3",
+      "dataCriacao": "30/08/2023",
+      "duracao": "2:25"
+    }
+  ]
 }
