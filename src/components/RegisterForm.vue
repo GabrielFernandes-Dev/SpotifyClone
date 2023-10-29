@@ -1,69 +1,3 @@
-<script>
-import axios from "axios";
-import { z } from "zod";
-
-export default {
-  data() {
-    return {
-      form: {
-        emailInput: '',
-        passwordInput: '',
-        firstName: '',
-      },
-      errors: null,
-      hasRegistration: false,
-      showAlert: false,
-    };
-  },
-  methods: {
-    onSubmit: async function () {
-      const formSchema = z.object({
-        emailInput: z.string().email({ message: 'Formato de email inválido!' }),
-        passwordInput: z
-          .string()
-          .min(6, { message: 'A senha deve ter no mínimo 6 caracteres!' })
-          .max(12, { message: 'A senha deve ter no máximo 12 caracteres!' }),
-        firstName: z.string().min(3, { message: 'Você deve escrever pelo menos o primeiro nome!' }),
-      })
-
-      const validSchema = formSchema.safeParse(this.form)
-
-      if (!validSchema.success) {
-        this.errors = validSchema.error.format()
-      } else {
-        this.errors = null;
-        const request = {
-          email: this.form.emailInput,
-          password: this.form.passwordInput,
-          firstName: this.form.firstName,
-        }
-
-        const responseGet = await axios.get("http://localhost:3000/users", request);
-        const userDb = responseGet.data;
-
-        userDb.forEach((element) => {
-          if (element["email"] === request.email) {
-            this.hasRegistration = true;
-            this.showAlert = true;
-            setTimeout(() => {
-              this.showAlert = false;
-            }, 5000);
-          }
-        })
-
-        if (!this.hasRegistration) {
-          const responsePost = await axios.post("http://localhost:3000/users", request)
-          if (responsePost.status === 201) {
-            this.$router.push('/login')
-          }
-        }
-      }
-    },
-  },
-}
-</script>
-
-
 <template>
   <main class="m-auto w-[700px] bg-black rounded-md my-20">
     <div v-if="showAlert" class="bg-red-500 rounded-md text-white p-4 fixed top-24 right-4 font-bold">
@@ -221,3 +155,68 @@ export default {
     </form>
   </main>
 </template>
+
+<script>
+import axios from "axios";
+import { z } from "zod";
+
+export default {
+  data() {
+    return {
+      form: {
+        emailInput: '',
+        passwordInput: '',
+        firstName: '',
+      },
+      errors: null,
+      hasRegistration: false,
+      showAlert: false,
+    };
+  },
+  methods: {
+    onSubmit: async function () {
+      const formSchema = z.object({
+        emailInput: z.string().email({ message: 'Formato de email inválido!' }),
+        passwordInput: z
+          .string()
+          .min(6, { message: 'A senha deve ter no mínimo 6 caracteres!' })
+          .max(12, { message: 'A senha deve ter no máximo 12 caracteres!' }),
+        firstName: z.string().min(3, { message: 'Você deve escrever pelo menos o primeiro nome!' }),
+      })
+
+      const validSchema = formSchema.safeParse(this.form)
+
+      if (!validSchema.success) {
+        this.errors = validSchema.error.format()
+      } else {
+        this.errors = null;
+        const request = {
+          email: this.form.emailInput,
+          password: this.form.passwordInput,
+          firstName: this.form.firstName,
+        }
+
+        const responseGet = await axios.get("http://localhost:3000/users", request);
+        const userDb = responseGet.data;
+
+        userDb.forEach((element) => {
+          if (element["email"] === request.email) {
+            this.hasRegistration = true;
+            this.showAlert = true;
+            setTimeout(() => {
+              this.showAlert = false;
+            }, 5000);
+          }
+        })
+
+        if (!this.hasRegistration) {
+          const responsePost = await axios.post("http://localhost:3000/users", request)
+          if (responsePost.status === 201) {
+            this.$router.push('/login')
+          }
+        }
+      }
+    },
+  },
+}
+</script>

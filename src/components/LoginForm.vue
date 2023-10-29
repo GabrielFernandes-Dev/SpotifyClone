@@ -1,65 +1,3 @@
-<script>
-import axios from 'axios'
-import { z } from 'zod'
-
-export default {
-    data() {
-        return {
-            form: {
-                emailInput: '',
-                passwordInput: '',
-            },
-            errors: null,
-            showAlert: false,
-        }
-    },
-    methods: {
-        onSubmit: async function () {
-            const formSchema = z.object({
-                emailInput: z.string().email({ message: 'Formato de email inválido!' }),
-                passwordInput: z
-                    .string()
-                    .min(6, { message: 'A senha deve ter no mínimo 6 caracteres!' })
-                    .max(12, { message: 'A senha deve ter no máximo 12 caracteres!' }),
-            })
-
-            const validSchema = formSchema.safeParse(this.form)
-
-            if (!validSchema.success) {
-                this.errors = validSchema.error.format()
-            } else {
-                this.errors = null;
-                const request = {
-                    email: this.form.emailInput,
-                    password: this.form.passwordInput,
-                }
-
-                const response = await axios.get('http://localhost:3000/users', request)
-                const userDb = response.data
-                
-                let userNotExists = true
-
-                userDb.forEach((element) => {
-                    if (element['email'] === request.email && element['password'] === request.password) {
-                        userNotExists = false
-                    }
-                })
-
-                if (userNotExists) {
-                    this.showAlert = true
-                    setTimeout(() => {
-                        this.showAlert = false
-                    }, 5000)
-                } else {
-                    this.$router.push('/')
-                }
-
-            }
-        },
-    },
-}
-</script>
-
 <template>
     <main className="my-20">
         <div v-if="showAlert" class="bg-red-500 rounded-md text-white p-4 fixed top-24 right-4 font-bold">
@@ -155,3 +93,65 @@ export default {
         </form>
     </main>
 </template>
+
+<script>
+import axios from 'axios'
+import { z } from 'zod'
+
+export default {
+    data() {
+        return {
+            form: {
+                emailInput: '',
+                passwordInput: '',
+            },
+            errors: null,
+            showAlert: false,
+        }
+    },
+    methods: {
+        onSubmit: async function () {
+            const formSchema = z.object({
+                emailInput: z.string().email({ message: 'Formato de email inválido!' }),
+                passwordInput: z
+                    .string()
+                    .min(6, { message: 'A senha deve ter no mínimo 6 caracteres!' })
+                    .max(12, { message: 'A senha deve ter no máximo 12 caracteres!' }),
+            })
+
+            const validSchema = formSchema.safeParse(this.form)
+
+            if (!validSchema.success) {
+                this.errors = validSchema.error.format()
+            } else {
+                this.errors = null;
+                const request = {
+                    email: this.form.emailInput,
+                    password: this.form.passwordInput,
+                }
+
+                const response = await axios.get('http://localhost:3000/users', request)
+                const userDb = response.data
+
+                let userNotExists = true
+
+                userDb.forEach((element) => {
+                    if (element['email'] === request.email && element['password'] === request.password) {
+                        userNotExists = false
+                    }
+                })
+
+                if (userNotExists) {
+                    this.showAlert = true
+                    setTimeout(() => {
+                        this.showAlert = false
+                    }, 5000)
+                } else {
+                    this.$store.commit('login')
+                    this.$router.push('/some-view')
+                }
+            }
+        },
+    },
+}
+</script>
