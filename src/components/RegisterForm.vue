@@ -26,22 +26,22 @@
 
       <div class="mb-[15px] flex flex-col">
         <label class="font-bold text-white" for="email-input">Qual é o seu email?</label>
-        <input v-model="form.emailInput" type="text"
+        <input v-model="form.email" type="text"
           class="w-[100%] border-zinc-400 hover:border-white focus:border-white text-white p-[8px] text-[14px] rounded-[3px] border-2 border-solid focus:outline-none bg-[#131313]"
           id="email-input" />
         <router-link class="text-[12px] text-purple-700 font-bold underline" to="#!">Usar número de
           telefone.</router-link>
-        <p class="text-red-500 text-sm mt-1" v-if="errors && errors.emailInput">
-          {{ errors.emailInput._errors[0] }}
+        <p class="text-red-500 text-sm mt-1" v-if="errors && errors.email">
+          {{ errors.email._errors[0] }}
         </p>
       </div>
 
       <div class="mb-[15px]">
         <label class="font-bold text-white" for="password-input">Crie uma senha</label>
-        <input v-model="form.passwordInput" type="password"
+        <input v-model="form.password" type="password"
           class="w-[100%] p-[8px] border-zinc-400 hover:border-white focus:border-white text-white text-[14px] rounded-[3px] border-2 border-solid  bg-[#131313] focus:outline-none" />
-        <p class="text-red-500 text-sm mt-1" v-if="errors && errors.passwordInput">
-          {{ errors.passwordInput._errors[0] }}
+        <p class="text-red-500 text-sm mt-1" v-if="errors && errors.password">
+          {{ errors.password._errors[0] }}
         </p>
       </div>
 
@@ -64,25 +64,26 @@
             <label class="font-bold" for="day-input">Dia</label>
             <input type="text"
               class="bg-[#131313] w-[100px] text-white font-normal p-[8px] outline-none border-2 border-solid border-zinc-400 hover:border-white focus:border-white rounded-[3px]"
-              name="day-input" placeholder="DD" maxlength="2" />
+              name="day-input" placeholder="DD" maxlength="2" v-model="form.birthday.day" />
+            <p class="text-red-500 text-sm mt-1">{{ errors && errors.birthday && errors.birthday.day._errors[0] }}</p>
           </div>
 
           <div class="flex flex-col mr-[20px]">
             <label class="font-bold" for="month-input">Mês</label>
-            <select class="w-[150px] h-[44px] p-[8px] border-zinc-400 hover:border-white focus:border-white font-normal outline-none border-2 border-solid bg-[#131313] rounded-[3px] text-white
+            <select v-model="form.birthday.month" class="w-[150px] h-[44px] p-[8px] border-zinc-400 hover:border-white focus:border-white font-normal outline-none border-2 border-solid bg-[#131313] rounded-[3px] text-white
 " name="months">
-              <option value="janeiro">janeiro</option>
-              <option value="fevereiro">fevereiro</option>
-              <option value="março">março</option>
-              <option value="abril">abril</option>
-              <option value="maio">maio</option>
-              <option value="junho">junho</option>
-              <option value="julho">julho</option>
-              <option value="agosto">agosto</option>
-              <option value="setembro">setembro</option>
-              <option value="outubro">outubro</option>
-              <option value="novembro">novembro</option>
-              <option value="dezembro">dezembro</option>
+              <option value=1>janeiro</option>
+              <option value=2>fevereiro</option>
+              <option value=3>março</option>
+              <option value=4>abril</option>
+              <option value=5>maio</option>
+              <option value=6>junho</option>
+              <option value=7>julho</option>
+              <option value=8>agosto</option>
+              <option value=9>setembro</option>
+              <option value=10>outubro</option>
+              <option value=11>novembro</option>
+              <option value=12>dezembro</option>
             </select>
           </div>
 
@@ -90,7 +91,8 @@
             <label class="font-bold" for="year-input">Ano</label>
             <input type="text"
               class="w-[100%] border-zinc-400 hover:border-white focus:border-white p-[8px] font-normal outline-none border-2 border-solid rounded-[3px] bg-[#131313] text-white"
-              placeholder="AAAA" name="year-input" maxlength="4" />
+              placeholder="AAAA" v-model="form.birthday.year" name="year-input" maxlength="4" />
+            <p class="text-red-500 text-sm mt-1">{{ errors && errors.birthday && errors.birthday.year._errors[0] }}</p>
           </div>
         </div>
       </div>
@@ -116,25 +118,26 @@
 
       <div class="  w-[100%] flex flex-col">
         <div class="flex w-[100%] text-[12px] mb-[30px]">
-          <input class="mr-2" type="checkbox" value="Masculino" />
+          <input class="mr-2" type="checkbox" value="" />
           <label class="font-bold text-white">Não quero receber mensagens de marketing do Spotify
           </label>
         </div>
 
         <div class="flex w-[100%] text-[12px] mb-[30px]">
-          <input class="mr-2" type="checkbox" value="Masculino" />
+          <input class="mr-2" type="checkbox" value="" />
           <label class="font-bold text-white">Compartilhar meus dados cadastrais com os provedores de conteúdo
             do Spotify para fins de marketing.
           </label>
         </div>
 
         <div class="flex w-[100%] text-[12px] mb-[30px]">
-          <input class="mr-2" type="checkbox" value="Masculino" />
+          <input class="mr-2" v-model="form.terms" type="checkbox" value="true" />
           <label class="font-bold text-white">
             Eu concordo com os <span class="text-purple-700 underline font-bold">Termos e Condições de Uso do
               Spotify</span>.
           </label>
         </div>
+        <p class="text-red-500 text-sm mt-1">{{ errors && errors.terms && errors.terms._errors[0] }}</p>
       </div>
 
       <p class="text-[10px] text-center font-bold text-white">
@@ -162,11 +165,24 @@ import { z } from "zod";
 
 export default {
   data() {
+    const today = new Date();
+
+    const day = String(today.getDate()).padStart(2, '0')
+    const month = String(today.getMonth() + 1).padStart(2, '0')
+    const year = today.getFullYear()
+
     return {
       form: {
-        emailInput: '',
-        passwordInput: '',
+        email: '',
+        password: '',
         firstName: '',
+        terms: false,
+        birthday: {
+          day: '',
+          month: '',
+          year: ''
+        },
+        registerdate: `${day}/${month}/${year}`
       },
       errors: null,
       hasRegistration: false,
@@ -176,12 +192,23 @@ export default {
   methods: {
     onSubmit: async function () {
       const formSchema = z.object({
-        emailInput: z.string().email({ message: 'Formato de email inválido!' }),
-        passwordInput: z
+        email: z.string().email({ message: 'Formato de email inválido!' }),
+        password: z
           .string()
           .min(6, { message: 'A senha deve ter no mínimo 6 caracteres!' })
           .max(12, { message: 'A senha deve ter no máximo 12 caracteres!' }),
         firstName: z.string().min(3, { message: 'Você deve escrever pelo menos o primeiro nome!' }),
+        birthday: z.object({
+          //day: z.string().min(),
+          //month: z.string().refine((month) => month.trim() !== '', { message: 'O mês é obrigatório.' }),
+          //year: z.string().refine((year) => {
+          //const numericYear = parseInt(year, 10)
+          //return numericYear >= 1900 && numericYear <= new Date().getFullYear()
+          //}, { message: `Ano inválido. Digite um valor entre 1900 e ${new Date().getFullYear()}.` }),
+        }),
+        terms: z.boolean().refine((value) => value === true, {
+          message: 'Você deve concordar com os termos para se inscrever.',
+        }),
       })
 
       const validSchema = formSchema.safeParse(this.form)
@@ -191,9 +218,12 @@ export default {
       } else {
         this.errors = null;
         const request = {
-          email: this.form.emailInput,
-          password: this.form.passwordInput,
+          email: this.form.email,
+          password: this.form.password,
           firstName: this.form.firstName,
+          birthday: this.form.birthday,
+          registerdate: this.form.registerdate,
+          terms: this.form.terms
         }
 
         const responseGet = await axios.get("http://localhost:3000/users", request);
