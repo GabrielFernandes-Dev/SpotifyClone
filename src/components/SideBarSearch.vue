@@ -34,7 +34,6 @@
                 
             }*/
         }
-
     }
 </script>
 <template>
@@ -62,7 +61,7 @@
        </div>
     </div>
 
-    <div v-for="musica in musicas" v-bind:key="musica.idMusica"> 
+    <div v-for="musica in listaMusicas" v-bind:key="musica.idMusica"> 
         <table class="table-auto">
             <tbody>
                 <tr>
@@ -70,7 +69,7 @@
                 <td><button>Adicionar</button></td>
                 </tr>
             </tbody>
-            </table>
+        </table>
     </div>
 
     <div>
