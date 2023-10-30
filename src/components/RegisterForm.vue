@@ -182,7 +182,12 @@ export default {
           month: '',
           year: ''
         },
-        registerdate: `${day}/${month}/${year}`
+        registerdate: `${day}/${month}/${year}`,
+        playlists: [
+          2,
+          3,
+          9
+        ]
       },
       errors: null,
       hasRegistration: false,
@@ -221,9 +226,14 @@ export default {
           email: this.form.email,
           password: this.form.password,
           firstName: this.form.firstName,
+          terms: this.form.terms,
           birthday: this.form.birthday,
           registerdate: this.form.registerdate,
-          terms: this.form.terms
+          playlists: [
+            2,
+            3,
+            9
+          ]
         }
 
         const responseGet = await axios.get("http://localhost:3000/users", request);

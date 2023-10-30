@@ -1,300 +1,320 @@
 {
-    "playlistContent": [
+  "users": [
+    {
+      "email": "samuel@email.com",
+      "password": "Samuel",
+      "firstName": "Samuel",
+      "terms": true,
+      "birthday": {
+        "day": "29",
+        "month": "5",
+        "year": "2023"
+      },
+      "registerdate": "29/10/2023",
+      "playlists": [
+        2,
+        3,
+        9
+      ],
+      "id": 1
+    }
+  ],
+  "playlistContent": [
+    {
+      "id": 1,
+      "nome": "Lush Lofi",
+      "capa": "../images/sunset_lofi.jpg",
+      "musicas": [
         {
-            "id": 1,
-            "nome": "Lush Lofi",
-            "capa": "../images/sunset_lofi.jpg",
-            "musicas": [
-                {
-                    "idMusica": 10,
-                    "nomeMusica": "Lofi Study",
-                    "localMusica": "src/songs/lofi-study-112191.mp3",
-                    "duracao": "2:27"
-                },
-                {
-                    "idMusica": 11,
-                    "nomeMusica": "Good Night",
-                    "localMusica": "src/songs/good-night-160166.mp3",
-                    "duracao": "2:27"
-                },
-                {
-                    "idMusica": 12,
-                    "nomeMusica": "Coffee Chill Out",
-                    "localMusica": "src/songs/coffee-chill-out-15283.mp3",
-                    "duracao": "1:16"
-                },
-                {
-                    "idMusica": 13,
-                    "nomeMusica": "Lofi Chill",
-                    "localMusica": "src/songs/lofi-chill-medium-version-159456.mp3",
-                    "duracao": "1:07"
-                },
-                {
-                    "idMusica": 14,
-                    "nomeMusica": "Ambient Lofi",
-                    "localMusica": "src/songs/lost-ambient-lofi-60s-10821.mp3",
-                    "duracao": "0:58"
-                }
-            ]
+          "idMusica": 10,
+          "nomeMusica": "Lofi Study",
+          "localMusica": "src/songs/lofi-study-112191.mp3",
+          "duracao": "2:27"
         },
         {
-            "id": 2,
-            "nome": "Chill Lofi Beats",
-            "capa": "../images/lazy_lofi.jpg",
-            "musicas": [
-                {
-                    "idMusica": 20,
-                    "nomeMusica": "Rain and Nostalgia",
-                    "localMusica": "src/songs/rain-and-nostalgia-version-60s-10820.mp3",
-                    "duracao": "1:10"
-                },
-                {
-                    "idMusica": 21,
-                    "nomeMusica": "Science Documentary",
-                    "localMusica": "src/songs/science-documentary-169621.mp3",
-                    "duracao": "2:07"
-                },
-                {
-                    "idMusica": 22,
-                    "nomeMusica": "Spirit Blossom",
-                    "localMusica": "src/songs/spirit-blossom-15285.mp3",
-                    "duracao": "1:48"
-                },
-                {
-                    "idMusica": 23,
-                    "nomeMusica": "Empty Mind",
-                    "localMusica": "src/songs/empty-mind-118973.mp3",
-                    "duracao": "2:55"
-                },
-                {
-                    "idMusica": 24,
-                    "nomeMusica": "The Weekend",
-                    "localMusica": "src/songs/the-weekend-117427.mp3",
-                    "duracao": "2:25"
-                }
-            ]
+          "idMusica": 11,
+          "nomeMusica": "Good Night",
+          "localMusica": "src/songs/good-night-160166.mp3",
+          "duracao": "2:27"
         },
         {
-            "id": 3,
-            "nome": "Lofi Beats",
-            "capa": "../images/aesthetic_lofi.png",
-            "musicas": [
-                {
-                    "idMusica": 30,
-                    "nomeMusica": "Lofi Study",
-                    "localMusica": "src/songs/lofi-study-112191.mp3",
-                    "duracao": "2:27"
-                },
-                {
-                    "idMusica": 31,
-                    "nomeMusica": "Good Night",
-                    "localMusica": "src/songs/good-night-160166.mp3",
-                    "duracao": "2:27"
-                },
-                {
-                    "idMusica": 32,
-                    "nomeMusica": "Coffee Chill Out",
-                    "localMusica": "src/songs/coffee-chill-out-15283.mp3",
-                    "duracao": "1:16"
-                },
-                {
-                    "idMusica": 33,
-                    "nomeMusica": "Lofi Chill",
-                    "localMusica": "src/songs/lofi-chill-medium-version-159456.mp3",
-                    "duracao": "1:07"
-                },
-                {
-                    "idMusica": 34,
-                    "nomeMusica": "Ambient Lofi",
-                    "localMusica": "src/songs/lost-ambient-lofi-60s-10821.mp3",
-                    "duracao": "0:58"
-                }
-            ]
+          "idMusica": 12,
+          "nomeMusica": "Coffee Chill Out",
+          "localMusica": "src/songs/coffee-chill-out-15283.mp3",
+          "duracao": "1:16"
         },
         {
-            "id": 4,
-            "nome": "Lofi",
-            "capa": "../images/new_york.jpg",
-            "musicas": [
-                {
-                    "idMusica": 40,
-                    "nomeMusica": "Rain and Nostalgia",
-                    "localMusica": "src/songs/rain-and-nostalgia-version-60s-10820.mp3",
-                    "duracao": "1:10"
-                },
-                {
-                    "idMusica": 41,
-                    "nomeMusica": "Science Documentary",
-                    "localMusica": "src/songs/science-documentary-169621.mp3",
-                    "duracao": "2:07"
-                },
-                {
-                    "idMusica": 42,
-                    "nomeMusica": "Spirit Blossom",
-                    "localMusica": "src/songs/spirit-blossom-15285.mp3",
-                    "duracao": "1:48"
-                },
-                {
-                    "idMusica": 43,
-                    "nomeMusica": "Empty Mind",
-                    "localMusica": "src/songs/empty-mind-118973.mp3",
-                    "duracao": "2:55"
-                },
-                {
-                    "idMusica": 44,
-                    "nomeMusica": "The Weekend",
-                    "localMusica": "src/songs/the-weekend-117427.mp3",
-                    "duracao": "2:25"
-                }
-            ]
+          "idMusica": 13,
+          "nomeMusica": "Lofi Chill",
+          "localMusica": "src/songs/lofi-chill-medium-version-159456.mp3",
+          "duracao": "1:07"
         },
         {
-            "id": 5,
-            "nome": "Chill Lofi Study Beats",
-            "capa": "../images/lofi_girl.jpg",
-            "musicas": [
-                {
-                    "idMusica": 50,
-                    "nomeMusica": "Lofi Study",
-                    "localMusica": "src/songs/lofi-study-112191.mp3",
-                    "duracao": "2:27"
-                },
-                {
-                    "idMusica": 51,
-                    "nomeMusica": "Good Night",
-                    "localMusica": "src/songs/good-night-160166.mp3",
-                    "duracao": "2:27"
-                },
-                {
-                    "idMusica": 52,
-                    "nomeMusica": "Coffee Chill Out",
-                    "localMusica": "src/songs/coffee-chill-out-15283.mp3",
-                    "duracao": "1:16"
-                },
-                {
-                    "idMusica": 53,
-                    "nomeMusica": "Lofi Chill",
-                    "localMusica": "src/songs/lofi-chill-medium-version-159456.mp3",
-                    "duracao": "1:07"
-                },
-                {
-                    "idMusica": 54,
-                    "nomeMusica": "Ambient Lofi",
-                    "localMusica": "src/songs/lost-ambient-lofi-60s-10821.mp3",
-                    "duracao": "0:58"
-                }
-            ]
-        },
-        {
-            "id": 6,
-            "nome": "Study Lofi",
-            "capa": "../images/study_lofi.jpg",
-            "musicas": [
-                {
-                    "idMusica": 60,
-                    "nomeMusica": "Rain and Nostalgia",
-                    "localMusica": "src/songs/rain-and-nostalgia-version-60s-10820.mp3",
-                    "duracao": "1:10"
-                },
-                {
-                    "idMusica": 61,
-                    "nomeMusica": "Science Documentary",
-                    "localMusica": "src/songs/science-documentary-169621.mp3",
-                    "duracao": "2:07"
-                },
-                {
-                    "idMusica": 62,
-                    "nomeMusica": "Spirit Blossom",
-                    "localMusica": "src/songs/spirit-blossom-15285.mp3",
-                    "duracao": "1:48"
-                },
-                {
-                    "idMusica": 63,
-                    "nomeMusica": "Empty Mind",
-                    "localMusica": "src/songs/empty-mind-118973.mp3",
-                    "duracao": "2:55"
-                },
-                {
-                    "idMusica": 64,
-                    "nomeMusica": "The Weekend",
-                    "localMusica": "src/songs/the-weekend-117427.mp3",
-                    "duracao": "2:25"
-                }
-            ]
-        },
-        {
-            "id": 7,
-            "nome": "Lofi Rain",
-            "capa": "../images/R.jpeg",
-            "musicas": [
-                {
-                    "idMusica": 70,
-                    "nomeMusica": "Lofi Study",
-                    "localMusica": "src/songs/lofi-study-112191.mp3",
-                    "duracao": "2:27"
-                },
-                {
-                    "idMusica": 71,
-                    "nomeMusica": "Good Night",
-                    "localMusica": "src/songs/good-night-160166.mp3",
-                    "duracao": "2:27"
-                },
-                {
-                    "idMusica": 72,
-                    "nomeMusica": "Coffee Chill Out",
-                    "localMusica": "src/songs/coffee-chill-out-15283.mp3",
-                    "duracao": "1:16"
-                },
-                {
-                    "idMusica": 73,
-                    "nomeMusica": "Lofi Chill",
-                    "localMusica": "src/songs/lofi-chill-medium-version-159456.mp3",
-                    "duracao": "1:07"
-                },
-                {
-                    "idMusica": 74,
-                    "nomeMusica": "Ambient Lofi",
-                    "localMusica": "src/songs/lost-ambient-lofi-60s-10821.mp3",
-                    "duracao": "0:58"
-                }
-            ]
-        },
-        {
-            "id": 8,
-            "nome": "Relaxing Music",
-            "capa": "../images/capa-lofi.jpeg",
-            "musicas": [
-                {
-                    "idMusica": 80,
-                    "nomeMusica": "Rain and Nostalgia",
-                    "localMusica": "src/songs/rain-and-nostalgia-version-60s-10820.mp3",
-                    "duracao": "1:10"
-                },
-                {
-                    "idMusica": 81,
-                    "nomeMusica": "Science Documentary",
-                    "localMusica": "src/songs/science-documentary-169621.mp3",
-                    "duracao": "2:07"
-                },
-                {
-                    "idMusica": 82,
-                    "nomeMusica": "Spirit Blossom",
-                    "localMusica": "src/songs/spirit-blossom-15285.mp3",
-                    "duracao": "1:48"
-                },
-                {
-                    "idMusica": 83,
-                    "nomeMusica": "Empty Mind",
-                    "localMusica": "src/songs/empty-mind-118973.mp3",
-                    "duracao": "2:55"
-                },
-                {
-                    "idMusica": 84,
-                    "nomeMusica": "The Weekend",
-                    "localMusica": "src/songs/the-weekend-117427.mp3",
-                    "duracao": "2:25"
-                }
-            ]
+          "idMusica": 14,
+          "nomeMusica": "Ambient Lofi",
+          "localMusica": "src/songs/lost-ambient-lofi-60s-10821.mp3",
+          "duracao": "0:58"
         }
-    ]
+      ]
+    },
+    {
+      "id": 2,
+      "nome": "Chill Lofi Beats",
+      "capa": "../images/lazy_lofi.jpg",
+      "musicas": [
+        {
+          "idMusica": 20,
+          "nomeMusica": "Rain and Nostalgia",
+          "localMusica": "src/songs/rain-and-nostalgia-version-60s-10820.mp3",
+          "duracao": "1:10"
+        },
+        {
+          "idMusica": 21,
+          "nomeMusica": "Science Documentary",
+          "localMusica": "src/songs/science-documentary-169621.mp3",
+          "duracao": "2:07"
+        },
+        {
+          "idMusica": 22,
+          "nomeMusica": "Spirit Blossom",
+          "localMusica": "src/songs/spirit-blossom-15285.mp3",
+          "duracao": "1:48"
+        },
+        {
+          "idMusica": 23,
+          "nomeMusica": "Empty Mind",
+          "localMusica": "src/songs/empty-mind-118973.mp3",
+          "duracao": "2:55"
+        },
+        {
+          "idMusica": 24,
+          "nomeMusica": "The Weekend",
+          "localMusica": "src/songs/the-weekend-117427.mp3",
+          "duracao": "2:25"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "nome": "Lofi Beats",
+      "capa": "../images/aesthetic_lofi.png",
+      "musicas": [
+        {
+          "idMusica": 30,
+          "nomeMusica": "Lofi Study",
+          "localMusica": "src/songs/lofi-study-112191.mp3",
+          "duracao": "2:27"
+        },
+        {
+          "idMusica": 31,
+          "nomeMusica": "Good Night",
+          "localMusica": "src/songs/good-night-160166.mp3",
+          "duracao": "2:27"
+        },
+        {
+          "idMusica": 32,
+          "nomeMusica": "Coffee Chill Out",
+          "localMusica": "src/songs/coffee-chill-out-15283.mp3",
+          "duracao": "1:16"
+        },
+        {
+          "idMusica": 33,
+          "nomeMusica": "Lofi Chill",
+          "localMusica": "src/songs/lofi-chill-medium-version-159456.mp3",
+          "duracao": "1:07"
+        },
+        {
+          "idMusica": 34,
+          "nomeMusica": "Ambient Lofi",
+          "localMusica": "src/songs/lost-ambient-lofi-60s-10821.mp3",
+          "duracao": "0:58"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "nome": "Lofi",
+      "capa": "../images/new_york.jpg",
+      "musicas": [
+        {
+          "idMusica": 40,
+          "nomeMusica": "Rain and Nostalgia",
+          "localMusica": "src/songs/rain-and-nostalgia-version-60s-10820.mp3",
+          "duracao": "1:10"
+        },
+        {
+          "idMusica": 41,
+          "nomeMusica": "Science Documentary",
+          "localMusica": "src/songs/science-documentary-169621.mp3",
+          "duracao": "2:07"
+        },
+        {
+          "idMusica": 42,
+          "nomeMusica": "Spirit Blossom",
+          "localMusica": "src/songs/spirit-blossom-15285.mp3",
+          "duracao": "1:48"
+        },
+        {
+          "idMusica": 43,
+          "nomeMusica": "Empty Mind",
+          "localMusica": "src/songs/empty-mind-118973.mp3",
+          "duracao": "2:55"
+        },
+        {
+          "idMusica": 44,
+          "nomeMusica": "The Weekend",
+          "localMusica": "src/songs/the-weekend-117427.mp3",
+          "duracao": "2:25"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "nome": "Chill Lofi Study Beats",
+      "capa": "../images/lofi_girl.jpg",
+      "musicas": [
+        {
+          "idMusica": 50,
+          "nomeMusica": "Lofi Study",
+          "localMusica": "src/songs/lofi-study-112191.mp3",
+          "duracao": "2:27"
+        },
+        {
+          "idMusica": 51,
+          "nomeMusica": "Good Night",
+          "localMusica": "src/songs/good-night-160166.mp3",
+          "duracao": "2:27"
+        },
+        {
+          "idMusica": 52,
+          "nomeMusica": "Coffee Chill Out",
+          "localMusica": "src/songs/coffee-chill-out-15283.mp3",
+          "duracao": "1:16"
+        },
+        {
+          "idMusica": 53,
+          "nomeMusica": "Lofi Chill",
+          "localMusica": "src/songs/lofi-chill-medium-version-159456.mp3",
+          "duracao": "1:07"
+        },
+        {
+          "idMusica": 54,
+          "nomeMusica": "Ambient Lofi",
+          "localMusica": "src/songs/lost-ambient-lofi-60s-10821.mp3",
+          "duracao": "0:58"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "nome": "Study Lofi",
+      "capa": "../images/study_lofi.jpg",
+      "musicas": [
+        {
+          "idMusica": 60,
+          "nomeMusica": "Rain and Nostalgia",
+          "localMusica": "src/songs/rain-and-nostalgia-version-60s-10820.mp3",
+          "duracao": "1:10"
+        },
+        {
+          "idMusica": 61,
+          "nomeMusica": "Science Documentary",
+          "localMusica": "src/songs/science-documentary-169621.mp3",
+          "duracao": "2:07"
+        },
+        {
+          "idMusica": 62,
+          "nomeMusica": "Spirit Blossom",
+          "localMusica": "src/songs/spirit-blossom-15285.mp3",
+          "duracao": "1:48"
+        },
+        {
+          "idMusica": 63,
+          "nomeMusica": "Empty Mind",
+          "localMusica": "src/songs/empty-mind-118973.mp3",
+          "duracao": "2:55"
+        },
+        {
+          "idMusica": 64,
+          "nomeMusica": "The Weekend",
+          "localMusica": "src/songs/the-weekend-117427.mp3",
+          "duracao": "2:25"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "nome": "Lofi Rain",
+      "capa": "../images/R.jpeg",
+      "musicas": [
+        {
+          "idMusica": 70,
+          "nomeMusica": "Lofi Study",
+          "localMusica": "src/songs/lofi-study-112191.mp3",
+          "duracao": "2:27"
+        },
+        {
+          "idMusica": 71,
+          "nomeMusica": "Good Night",
+          "localMusica": "src/songs/good-night-160166.mp3",
+          "duracao": "2:27"
+        },
+        {
+          "idMusica": 72,
+          "nomeMusica": "Coffee Chill Out",
+          "localMusica": "src/songs/coffee-chill-out-15283.mp3",
+          "duracao": "1:16"
+        },
+        {
+          "idMusica": 73,
+          "nomeMusica": "Lofi Chill",
+          "localMusica": "src/songs/lofi-chill-medium-version-159456.mp3",
+          "duracao": "1:07"
+        },
+        {
+          "idMusica": 74,
+          "nomeMusica": "Ambient Lofi",
+          "localMusica": "src/songs/lost-ambient-lofi-60s-10821.mp3",
+          "duracao": "0:58"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "nome": "Relaxing Music",
+      "capa": "../images/capa-lofi.jpeg",
+      "musicas": [
+        {
+          "idMusica": 80,
+          "nomeMusica": "Rain and Nostalgia",
+          "localMusica": "src/songs/rain-and-nostalgia-version-60s-10820.mp3",
+          "duracao": "1:10"
+        },
+        {
+          "idMusica": 81,
+          "nomeMusica": "Science Documentary",
+          "localMusica": "src/songs/science-documentary-169621.mp3",
+          "duracao": "2:07"
+        },
+        {
+          "idMusica": 82,
+          "nomeMusica": "Spirit Blossom",
+          "localMusica": "src/songs/spirit-blossom-15285.mp3",
+          "duracao": "1:48"
+        },
+        {
+          "idMusica": 83,
+          "nomeMusica": "Empty Mind",
+          "localMusica": "src/songs/empty-mind-118973.mp3",
+          "duracao": "2:55"
+        },
+        {
+          "idMusica": 84,
+          "nomeMusica": "The Weekend",
+          "localMusica": "src/songs/the-weekend-117427.mp3",
+          "duracao": "2:25"
+        }
+      ]
+    }
+  ]
 }
