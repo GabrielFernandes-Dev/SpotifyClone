@@ -5,6 +5,9 @@ import RecomendationsView from '../views/RecomendationsView.vue'
 import PlayList from '../views/PlayListView.vue'
 import RegisterView from '../views/RegisterView.vue'
 import LoginView from '../views/LoginView.vue'
+import SomeView from '../views/SomeView.vue'
+import store from '../stores/store'
+
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -13,6 +16,18 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: HomeView
+    },
+    {
+      path: '/some-view',
+      name: 'some-view',
+      component: SomeView,
+      beforeEnter: (to, from, next) => {
+        if (store.getters.isLoggedIn) {
+          next()
+        } else {
+          next('/login')
+        }
+      },
     },
     {
       path: '/register',
