@@ -1,6 +1,7 @@
 <script setup>
 import Recomendations from '../components/Recomendations.vue';
 import SideBar from '../components/SideBar.vue';
+import Audio from '../components/Audio.vue';
 </script>
 
 <template>
