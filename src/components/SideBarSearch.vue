@@ -8,12 +8,13 @@
             return {
                 searchValue: '',
                 open: false,
-                musicas: []
+                musicas: [],
             }
         },
         methods: {
             clearSearch() {
                 this.searchValue = ''
+                this.open = !this.open
             }
         },
         async created() {
@@ -45,7 +46,8 @@
             aria-label="Search"
             aria-describedby="button-addon3" 
             v-model="searchValue"
-            @click="open = !open"/>
+            @click="open = !open"
+            v-on:blur="clearSearch()"/>
 
             <!--Search button-->
             <button
@@ -72,11 +74,18 @@
                         id="button-addon4"
                         data-te-ripple-init
                         @click="adicionarMusica()">
-                        <img src="../images/mais.jpg" alt="Adicionar música" width="10" height="10">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                        </svg>
                     </button></td>
                 </tr>
             </tbody>
         </table>
     </div>
-
 </template>
+<style>
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration { display: none; }
+</style>

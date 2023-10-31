@@ -101,6 +101,12 @@
       "nome": "Nova Playlist",
       "capa": "../images/defaultCover.jpeg",
       "musicas": []
+    },
+    {
+      "id": 10,
+      "nome": "Nova Playlist",
+      "capa": "../images/defaultCover.jpeg",
+      "musicas": []
     }
   ],
   "users": [
@@ -119,7 +125,8 @@
       "playlists": [
         2,
         3,
-        9
+        9,
+        10
       ]
     }
   ],
