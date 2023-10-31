@@ -1,5 +1,6 @@
 <script>
     import axios from 'axios'
+    import { musicaSelecionada } from '../stores/MusicaAtual'
 
     export default {
 
@@ -50,7 +51,7 @@
             type="button"
             id="button-addon3"
             data-te-ripple-init
-            onclick="clearSearch()">
+            @click="clearSearch()">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-red-500">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
             </svg>
@@ -62,13 +63,13 @@
         <table class="columns-2 text-gray-100 text-left">
             <tbody v-for="musica in listaMusicas" v-bind:key="musica.idMusica">
                 <tr>
-                <td>{{ musica.nomeMusica }}</td>
+                <td><button @click="musicaSelecionada = musica">{{ musica.nomeMusica }}</button></td>
                 <td><button
                         class="relative z-[2] rounded-full px-1 py-1 bg-purple-600"
                         type="button"
                         id="button-addon4"
                         data-te-ripple-init
-                        onclick="adicionarMusica()">
+                        @click="adicionarMusica()">
                         <img src="../images/mais.jpg" alt="Adicionar música" width="10" height="10">
                     </button></td>
                 </tr>
