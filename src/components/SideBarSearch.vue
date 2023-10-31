@@ -7,6 +7,7 @@
         data() {
             return {
                 searchValue: '',
+                open: false,
                 musicas: []
             }
         },
@@ -43,7 +44,8 @@
             placeholder="Search"
             aria-label="Search"
             aria-describedby="button-addon3" 
-            v-model="searchValue"/>
+            v-model="searchValue"
+            @click="open = !open"/>
 
             <!--Search button-->
             <button
@@ -59,7 +61,7 @@
        </div>
     </div>
 
-    <div class="bg-zinc-900 border-gray-950 lg:border-l-0 lg:border-t lg:border-gray-1000 rounded-b lg:rounded-b-none lg:rounded-r p-2 flex flex-col justify-between leading-normal mx-2 mb-2 w-96"> 
+    <div class="bg-zinc-900 border-gray-950 lg:border-l-0 lg:border-t lg:border-gray-1000 rounded-b lg:rounded-b-none lg:rounded-r p-2 flex flex-col justify-between leading-normal mx-2 mb-2 w-96" v-show="open"> 
         <table class="columns-2 text-gray-100 text-left">
             <tbody v-for="musica in listaMusicas" v-bind:key="musica.idMusica">
                 <tr>
@@ -76,7 +78,5 @@
             </tbody>
         </table>
     </div>
-
-
 
 </template>

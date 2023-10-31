@@ -12,5 +12,4 @@ import Audio from '../components/Audio.vue';
             <Recomendations />
         </div> 
     </div> 
-    <Audio />
 </template>
