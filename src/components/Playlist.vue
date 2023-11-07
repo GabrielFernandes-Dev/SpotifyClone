@@ -54,7 +54,10 @@ export default {
                 }
             });
         },
-    }
+        //async remover(id) {
+            
+        //}
+    },
 }
 </script>
 <template>
@@ -99,6 +102,11 @@ export default {
                 <!-- <audio style="width:800px;height:32px" controls>
                     <source :src="n.localMusica" type="audio/ogg">
                 </audio> -->
+                <td>
+                    <button>
+                        Remover
+                    </button>
+                </td>
             </tr>
         </tbody>
     </table>
