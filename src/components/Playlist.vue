@@ -14,8 +14,11 @@ export default {
             playlistSelecionada: [],
             imageUrl: './samuel.jpg',
             musicasPlaylist: [],
+            musicas: [],
+            modalOpen: false,
         };
     },
+    
     async created() {
         await this.getPlaylist()
         await this.getMusicas()
@@ -54,9 +57,25 @@ export default {
                 }
             });
         },
-        //async remover(id) {
-            
-        //}
+        async removeSong(songID){
+            console.log(this.playlistSelecionada)
+            console.log(this.musicasPlaylist)
+            try {
+                const i = this.playlistSelecionada.musicas.indexOf(songID);
+                this.playlistSelecionada.musicas.splice(i, 1);
+                console.log(`removendo musica com ID: ${songID}`)
+                await axios.patch('http://localhost:3000/playlists/' + this.playlistId, this.playlistSelecionada)
+            }
+            catch(error) {
+                console.log("Não pode remover musica")
+            }
+        },
+        estadoModal(){
+            this.modalOpen = !this.modalOpen;
+        },
+        async addMusica(){
+
+        }
     },
 }
 </script>
@@ -67,7 +86,9 @@ export default {
         <div class="content">
             <h1 class="pb-4 text-4xl">{{ playlistSelecionada.nome }}<br>Playlist</h1>
         </div>
+        
     </div>
+
     <table class="w-full text-sm text-left text-gray-100 dark:text-gray-100">
         <thead class="text-xs text-black uppercase dark:text-gray-100">
             <tr>
@@ -82,6 +103,11 @@ export default {
                 </th>
                 <th scope="col" class="px-4 py-3">
                     Duração
+                </th>
+                <th scope="col" class="px-4 py-3">
+                    <button @click="estadoModal" type="button" class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
+                        Adicionar musica
+                    </button>
                 </th>
             </tr>
         </thead>
@@ -103,7 +129,7 @@ export default {
                     <source :src="n.localMusica" type="audio/ogg">
                 </audio> -->
                 <td>
-                    <button>
+                    <button @click="removeSong(n.idMusica)" type="button" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
                         Remover
                     </button>
                 </td>
@@ -116,7 +142,30 @@ export default {
         </audio> 
     </div> -->
 </div>
+
+<div v-show="modalOpen" class="absolute w-full bg-black bg-opacity-30 h-screen 
+    top-0 left-0 flex justify-content px-8">
+
+    <form class="bg-white">
+        <div class="mb-6">
+            <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
+            <input type="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@flowbite.com" required>
+        </div>
+        <div class="mb-6">
+            <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your password</label>
+            <input type="password" id="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+        </div>
+        <div class="flex items-start mb-6">
+            <div class="flex items-center h-5">
+            <input id="remember" type="checkbox" value="" class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800" required>
+            </div>
+            <label for="remember" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Remember me</label>
+        </div>
+        <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+    </form>
+</div>
 </template>
+
 <style>
 .image-container {
   position: relative;

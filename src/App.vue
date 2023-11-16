@@ -7,7 +7,10 @@
 
 <template>
   <div class="flex flex-col min-h-screen">
-    <NavBar/>
+    <header>
+      <NavBar/>
+    </header>
+
     <RouterView />
     <ModalPlaylist>
       <p>
