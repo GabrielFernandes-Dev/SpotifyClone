@@ -55,3 +55,8 @@ npm run test:e2e
 ```sh
 npm run lint
 ```
+### Run json-server
+
+```sh
+json-server ./src/stores/PlaylistJSON.json
+```
