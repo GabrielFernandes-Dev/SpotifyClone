@@ -1,6 +1,6 @@
 const cors = require('cors')
 const express = require('express')
-const { MongoClient, ServerApiVersion } = require('mongodb');
+const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const app = express()
 const port = 3000
 const uri = "mongodb+srv://spotifyclone:qroiv2@cluster0.iugrhct.mongodb.net/?retryWrites=true&w=majority";
@@ -25,21 +25,33 @@ connect()
 
 //listar todas as playlists, os usuários e as músicas
 app.get('/playlists', async (req, res) => {
+  const id = req.query.id
   try {
-    
     const db = client.db("spotifyclone")
-    const playlists = await db.collection("playlists").find().toArray()
+    var playlists = ""
+    if(id){
+      playlists = await db.collection("playlists").find(new ObjectId(id)).toArray()
+    }
+    else{  
+      playlists = await db.collection("playlists").find().toArray()
+    }
     res.json(playlists)
   } catch (e) {
     console.log(e)
   } 
-
-  
 })
 
 app.get('/users', async (req, res) => {
+  const id = req.query.id
   try {
-    const users = await client.db("spotifyclone").collection("users").find().toArray()
+    const db = client.db("spotifyclone")
+    var users = ""
+    if(id){
+      users = await db.collection("playlists").find(new ObjectId(id)).toArray()
+    }
+    else{  
+      users = await db.collection("playlists").find().toArray()
+    }
     res.json(users)
   } catch (e) {
     console.log(e)
@@ -47,34 +59,28 @@ app.get('/users', async (req, res) => {
 })
 
 app.get('/musicas', async (req, res) => {
+  const nome = req.query.nome
   try {
-    const musicas = await client.db("spotifyclone").collection("musicas").find().toArray()
+    const db = client.db("spotifyclone")
+    var musicas = ""
+    if(nome){
+      musicas = await db.collection("musicas").find({
+        "nomeMusica": {
+          "$regex": nome,
+          "$options": "i"
+        }
+      }).toArray()
+    }
+    else{  
+      musicas = await db.collection("musicas").find().toArray()
+    }
     res.json(musicas)
-    } catch (e) {
-      console.log(e)
-    } 
-})
-
-//listar uma playlist, um usuário ou uma música
-app.get('/playlists', async (req, res) => {
-  const id = req.query._id
-  try {
-    const playlist = await client.db("spotifyclone").collection("playlists").find(id)
-    res.json(playlist)
   } catch (e) {
     console.log(e)
   } 
 })
 
-app.get('/users', async (req, res) => {
-  const id = req.query._id
-  try {
-    const user = await client.db("spotifyclone").collection("users").find(id)
-    res.json(user)
-  } catch (e) {
-    console.log(e)
-  } 
-})
+
 
 /*app.get('/musicas/:index', (req, res) => {
   const {index} = req.params
@@ -85,7 +91,7 @@ app.get('/users', async (req, res) => {
 app.get('/users', async (req, res) => {
   const email = req.query.email
   try{
-    const user = await client.db("spotifyclone").collection("users").find(id)
+    const user = await client.db("spotifyclone").collection("users").find({_email:email})
   res.json(user)
   } catch (e) {
     console.log(e)
