@@ -95,12 +95,6 @@
         7,
         10
       ]
-    },
-    {
-      "id": 9,
-      "nome": "Nova Playlist",
-      "capa": "../images/defaultCover.jpeg",
-      "musicas": []
     }
   ],
   "users": [
@@ -118,8 +112,7 @@
       "registerdate": "27/10/2023",
       "playlists": [
         2,
-        3,
-        9
+        3
       ]
     }
   ],
