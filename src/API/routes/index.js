@@ -23,7 +23,7 @@ async function connect() {
 
 connect()
 
-//listar todas as playlists, os usuários e as músicas
+//métodos get 
 app.get('/playlists', async (req, res) => {
   const id = req.query.id
   try {
@@ -47,10 +47,10 @@ app.get('/users', async (req, res) => {
     const db = client.db("spotifyclone")
     var users = ""
     if(id){
-      users = await db.collection("playlists").find(new ObjectId(id)).toArray()
+      users = await db.collection("users").find(new ObjectId(id)).toArray()
     }
     else{  
-      users = await db.collection("playlists").find().toArray()
+      users = await db.collection("users").find().toArray()
     }
     res.json(users)
   } catch (e) {
@@ -60,6 +60,7 @@ app.get('/users', async (req, res) => {
 
 app.get('/musicas', async (req, res) => {
   const nome = req.query.nome
+  const id = req.query.id
   try {
     const db = client.db("spotifyclone")
     var musicas = ""
@@ -71,7 +72,9 @@ app.get('/musicas', async (req, res) => {
         }
       }).toArray()
     }
-    else{  
+    else if(id){
+      musicas = await db.collection("musicas").find(new ObjectId(id)).toArray()
+    } else{  
       musicas = await db.collection("musicas").find().toArray()
     }
     res.json(musicas)
@@ -80,19 +83,77 @@ app.get('/musicas', async (req, res) => {
   } 
 })
 
-
-
-/*app.get('/musicas/:index', (req, res) => {
-  const {index} = req.params
-  res.json(musicas[index])
-})*/
-
 //buscar email
 app.get('/users', async (req, res) => {
   const email = req.query.email
-  try{
-    const user = await client.db("spotifyclone").collection("users").find({_email:email})
-  res.json(user)
+  try {
+    const db = client.db("spotifyclone")
+    var user = ""
+    if(email){
+      user = await db.collection("users").find({
+        "email": {
+          "$regex": email,
+          "$options": "i"
+        }
+      }).toArray()
+    }
+    res.json(user)
+  } catch (e) {
+    console.log(e)
+  } 
+})
+
+//Criar playlist ou usuário
+app.post('/playlists', async (req, res) => {
+  const newplaylist = req.body
+  try {
+    const db = client.db("spotifyclone")
+    db.collection("playlists").insertOne(newplaylist);
+    var playlists = ""
+    playlists = await db.collection("playlists").find().toArray()
+    res.json(playlists)
+  } catch (e) {
+    console.log(e)
+  } 
+})
+
+app.post('/users', async (req, res) => {
+  const newuser = req.body
+  try {
+    const db = client.db("spotifyclone")
+    db.collection("users").insertOne(newuser);
+    var users = ""
+    users = await db.collection("users").find().toArray()
+    res.json(users)
+  } catch (e) {
+    console.log(e)
+  } 
+})
+
+//editar usuário e playlist
+
+//deletar usuário e música
+app.delete('/users', async (req, res) => {
+  const user = req.body
+  try {
+    const db = client.db("spotifyclone")
+    db.collection("users").deleteOne(user);
+    var users = ""
+    users = await db.collection("users").find().toArray()
+    res.json(users)
+  } catch (e) {
+    console.log(e)
+  }
+})
+
+app.delete('/musicas', async (req, res) => {
+  const musica = req.body
+  try {
+    const db = client.db("spotifyclone")
+    db.collection("musicas").deleteOne(musica);
+    var musicas = ""
+    musicas = await db.collection("musicas").find().toArray()
+    res.json(musicas)
   } catch (e) {
     console.log(e)
   }
