@@ -12,7 +12,7 @@ export default {
     data() {
         return {
             playlists: [],
-            userId: 1 //Id do usuário colocado temporariamente
+            userId: "656cd35ed13dc6514086347d"
         };
     },
     async created() {
