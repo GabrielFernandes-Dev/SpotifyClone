@@ -57,7 +57,7 @@ export default {
             try {
                 const i = this.playlistSelecionada.musicas.indexOf(songID);
                 this.playlistSelecionada.musicas.splice(i, 1);
-                await axios.patch('http://localhost:3000/playlists?id=' + this.playlistId, this.playlistSelecionada)
+                await axios.patch('http://localhost:3000/removermusica?id=' + this.playlistId, this.playlistSelecionada)
                 location.reload()
             }
             catch(error) {
@@ -82,7 +82,8 @@ export default {
             try {
                 this.playlistSelecionada.musicas.push(musicaID);
                 console.log(`adicioanando musica com id: ${musicaID}`)
-                await axios.patch('http://localhost:3000/playlists/' + this.playlistId, this.playlistSelecionada)
+                await axios.patch('http://localhost:3000/adicionarmusica?id=' + this.playlistId, this.playlistSelecionada)
+                location.reload()
             }
             catch(error) {
                 console.log("Não pode remover musica! ERRO:" + error)
@@ -171,7 +172,7 @@ export default {
                     {{ n.nomeMusica }}
                 </th>
                 <td class="px-6 py-4">
-                    <button @click="addMusica(n.idMusica)" type="button" class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
+                    <button @click="addMusica(n._id)" type="button" class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
                             Adicionar
                     </button>
                 </td>

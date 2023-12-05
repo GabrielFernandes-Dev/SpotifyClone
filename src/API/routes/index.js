@@ -131,10 +131,30 @@ app.post('/users', async (req, res) => {
 })
 
 //editar usuário e playlist
-app.patch('/playlists', async (req, res) => {
+app.patch('/removermusica', async (req, res) => {
   const json = req.body
   const id = req.query.id
   console.log(id);
+  try {
+    const db = client.db("spotifyclone")
+    const filter = { "_id" : new ObjectId(id) }
+    const updateDoc = {
+      $set: {
+        musicas: json.musicas
+      },
+    }
+    const result = await db.collection("playlists").updateOne(filter, updateDoc);
+    console.log(result.modifiedCount)
+    res.json("Ok")
+  } catch (e) {
+    console.log(e)
+  }
+})
+
+app.patch('/adicionarmusica', async (req, res) => {
+  const json = req.body
+  const id = req.query.id
+  console.log(json);
   try {
     const db = client.db("spotifyclone")
     const filter = { "_id" : new ObjectId(id) }
