@@ -15,7 +15,7 @@ export default {
             imageUrl: './samuel.jpg',
             musicasPlaylist: [],
             musicas: [],
-            modalOpen: false,
+            modalOpen: false
         };
     },
     
@@ -30,12 +30,6 @@ export default {
                 this.getPlaylist();
             }
         },
-        playlistSelecionada: {
-            handler() {
-                this.getMusicas();
-            },
-            deep: true
-        }
     },
     methods: {
         async getPlaylist() {
@@ -51,7 +45,8 @@ export default {
             this.musicasPlaylist = [];
             this.playlistSelecionada.musicas.forEach(async musicaId => {
                 try {
-                    const res = await axios.get('http://localhost:3000/musicas?idMusica=' + musicaId);
+                    const res = await axios.get('http://localhost:3000/musicas?id=' + musicaId);
+                    console.log(musicaId);
                     this.musicasPlaylist.push(res.data[0]);
                 } catch (error) {
                     console.error('Erro ao buscar a música:', error);
@@ -59,13 +54,11 @@ export default {
             });
         },
         async removeSong(songID){
-            console.log(this.playlistSelecionada)
-            console.log(this.musicasPlaylist)
             try {
                 const i = this.playlistSelecionada.musicas.indexOf(songID);
                 this.playlistSelecionada.musicas.splice(i, 1);
-                console.log(`removendo musica com ID: ${songID}`)
-                await axios.patch('http://localhost:3000/playlists/' + this.playlistId, this.playlistSelecionada)
+                await axios.patch('http://localhost:3000/removermusica?id=' + this.playlistId, this.playlistSelecionada)
+                location.reload()
             }
             catch(error) {
                 console.log("Não pode remover musica! ERRO:" + error)
@@ -76,7 +69,6 @@ export default {
             {
                 const res = await axios.get('http://localhost:3000/musicas')
                 this.musicas = res.data
-                console.log(this.musicas)
             }
             catch(error)
             {
@@ -87,12 +79,11 @@ export default {
             this.modalOpen = !this.modalOpen;
         },
         async addMusica(musicaID){
-            console.log(this.playlistSelecionada)
-            console.log(this.musicasPlaylist)
             try {
                 this.playlistSelecionada.musicas.push(musicaID);
                 console.log(`adicioanando musica com id: ${musicaID}`)
-                await axios.patch('http://localhost:3000/playlists/' + this.playlistId, this.playlistSelecionada)
+                await axios.patch('http://localhost:3000/adicionarmusica?id=' + this.playlistId, this.playlistSelecionada)
+                location.reload()
             }
             catch(error) {
                 console.log("Não pode remover musica! ERRO:" + error)
@@ -102,7 +93,7 @@ export default {
 }
 </script>
 <template>
-<div class="max-w-sm w-full lg:max-w-full bg-fixed">
+<div class="max-w-sm w-full lg:max-w-full bg-fixed ">
     <div class="image-container">
         <img :src="getImageUrl(playlistSelecionada.capa)" alt="Playlist Image" class="playlist-image">
         <div class="content">
@@ -118,15 +109,14 @@ export default {
                     Titulo
                 </th>
                 <th scope="col" class="px-4 py-3">
-                    Album
-                </th>
-                <th scope="col" class="px-4 py-3">
                     Adicionado em
                 </th>
                 <th scope="col" class="px-4 py-3">
                     Duração
                 </th>
                 <th scope="col" class="px-4 py-3">
+                </th>
+                <th scope="col" class="px-0.5 py-3">
                     <button @click="estadoModal" type="button" class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
                         Adicionar musica
                     </button>
@@ -134,22 +124,21 @@ export default {
             </tr>
         </thead>
         <tbody>
-            <tr  v-for="n in musicasPlaylist" class="bg-white dark:bg-black">
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white" @click="btn = n.localMusica">
+            <tr v-for="n in musicasPlaylist" class="bg-white dark:bg-black">
+                <th scope="row" class="w-full font-medium text-gray-900 whitespace-nowrap dark:text-white">
                     {{ n.nomeMusica }}
                 </th>
-                <td class="px-6 py-4">
-                    {{ n.nome }}
-                </td>
                 <td class="px-6 py-4">
                     {{ n.dataCriacao }}
                 </td>
                 <td class="px-6 py-4">
                    {{ n.duracao }}
                 </td>
-                <!-- <audio style="width:800px;height:32px" controls>
-                    <source :src="n.localMusica" type="audio/ogg">
-                </audio> -->
+                <td>
+                    <audio style="width:540px;height:32px" controls>
+                        <source :src="n.localMusica" type="audio/ogg">
+                    </audio> 
+                </td>
                 <td>
                     <button @click="removeSong(n.idMusica)" type="button" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
                         Remover
@@ -158,11 +147,6 @@ export default {
             </tr>
         </tbody>
     </table>
-    <!-- <div> 
-        <audio style="width:800px;height:32px" controls>
-            <source :src="btn" type="audio/ogg">
-        </audio> 
-    </div> -->
 </div >
 
 <div v-show="modalOpen" class="absolute w-full bg-black bg-opacity-30 h-screen 
@@ -181,7 +165,7 @@ export default {
                     {{ n.nomeMusica }}
                 </th>
                 <td class="px-6 py-4">
-                    <button @click="addMusica(n.idMusica)" type="button" class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
+                    <button @click="addMusica(n._id)" type="button" class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
                             Adicionar
                     </button>
                 </td>

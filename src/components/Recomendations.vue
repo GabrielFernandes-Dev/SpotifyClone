@@ -26,7 +26,7 @@ export default {
     <div class="columns-4">
         <div v-for="playlist in playlists" class="pl-2 pb-2">
             <div class="block w-44 rounded-lg shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] bg-neutral-700 card-hover">
-                <router-link :to="'/playlist?id=' + playlist.id" @click="playlistSelecionada = playlist.musicas">
+                <router-link :to="'/playlist?id=' + playlist._id" @click="playlistSelecionada = playlist.musicas">
                     <img class="rounded-t-lg w-full h-44 object-cover"
                     :src= "getImageUrl(playlist.capa)" 
                     alt="Capa da playlist"/>
